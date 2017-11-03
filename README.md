@@ -34,7 +34,7 @@ Script will default to creating a case entity. In order to specify otherwise, us
 
 Supports creation of child docs and custom child docs. Creating custom child docs will generate the appropriate related files.
 
-Paste input in the 'fields.txt'. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
+Paste input in the **fields.txt**. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 
 Field Name | Type | TypeOptions (Picklists, Radios)
 --- | --- | ---
@@ -63,7 +63,7 @@ Script will default to creating a case-capture form. In order to specify otherwi
   * **rules.js**
   * **validation.js**
 
-Paste input in the 'form.txt' file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
+Paste input in the **form.txt** file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 
 Field Name | Type | TypeOptions (Picklists, Radios)
 --- | --- | ---
@@ -87,7 +87,7 @@ Run **node generate-picklist.js**
 
 The script works recursively, so it should be able to handle a string of ancestry parents.
 
-Paste input in the 'picklist.txt' file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
+Paste input in the **picklist.txt** file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 
 Department | Case Type | Sub Case Type
 --- | --- | ---
