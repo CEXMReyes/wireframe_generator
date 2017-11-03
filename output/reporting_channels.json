@@ -1,0 +1,32 @@
+[
+	{
+		"name": "reporting_channels",
+		"value": "email",
+		"caption": "Email"
+	},
+	{
+		"name": "reporting_channels",
+		"value": "phone",
+		"caption": "Phone"
+	},
+	{
+		"name": "reporting_channels",
+		"value": "web_form",
+		"caption": "Web Form"
+	},
+	{
+		"name": "reporting_channels",
+		"value": "in_person",
+		"caption": "In Person"
+	},
+	{
+		"name": "reporting_channels",
+		"value": "social_media",
+		"caption": "Social Media"
+	},
+	{
+		"name": "reporting_channels",
+		"value": "other",
+		"caption": "Other"
+	}
+]

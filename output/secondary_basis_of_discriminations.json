@@ -1,0 +1,77 @@
+[
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "age",
+		"caption": "Age"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "citizen_status",
+		"caption": "Citizen Status"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "disability",
+		"caption": "Disability"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "gender",
+		"caption": "Gender"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "gender_identity",
+		"caption": "Gender Identity"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "national_origin",
+		"caption": "National Origin"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "pregnancy",
+		"caption": "Pregnancy"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "race",
+		"caption": "Race"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "religion",
+		"caption": "Religion"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "sex",
+		"caption": "Sex"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "sexual_orientation",
+		"caption": "Sexual Orientation"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "veteran_status",
+		"caption": "Veteran status"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "ethnicity",
+		"caption": "Ethnicity"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "medical_history",
+		"caption": "Medical History"
+	},
+	{
+		"name": "secondary_basis_of_discriminations",
+		"value": "other",
+		"caption": "Other"
+	}
+]

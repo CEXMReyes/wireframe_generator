@@ -1,0 +1,42 @@
+[
+	{
+		"name": "complainant_types",
+		"value": "staff",
+		"caption": "Staff"
+	},
+	{
+		"name": "complainant_types",
+		"value": "faculty",
+		"caption": "Faculty"
+	},
+	{
+		"name": "complainant_types",
+		"value": "security",
+		"caption": "Security"
+	},
+	{
+		"name": "complainant_types",
+		"value": "student",
+		"caption": "Student"
+	},
+	{
+		"name": "complainant_types",
+		"value": "alumni",
+		"caption": "Alumni"
+	},
+	{
+		"name": "complainant_types",
+		"value": "visitor",
+		"caption": "Visitor"
+	},
+	{
+		"name": "complainant_types",
+		"value": "vendor_contractor",
+		"caption": "Vendor/Contractor"
+	},
+	{
+		"name": "complainant_types",
+		"value": "other",
+		"caption": "Other"
+	}
+]

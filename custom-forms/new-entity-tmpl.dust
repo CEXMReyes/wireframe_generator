@@ -1,0 +1,32 @@
+<!-- Buttons to save and cancel -->
+<div class="btn-toolbar pull-right btn-toolbar-sticky">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="tooltip"
+                data-placement="bottom" title="{@resource key="save" /}" id="save"
+                data-ladda-model-save>
+            <img src="/img/bootstrap-custom/save-white.png"></img>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                data-toggle="dropdown" data-ladda-disable-on-save>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu styled-dropdown" role="menu">
+            <li id="save-and-copy"><a>
+				{@resource key="save_and_copy" /}</a></li>
+        </ul>
+    </div>
+	<a class="btn btn-danger btn-lg" data-toggle="tooltip" data-placement="bottom" title="{@resource key="cancel" /}" id="cancel">
+		<img src="/img/bootstrap-custom/close-white.png"/>
+	</a>
+</div>
+
+{#model.id}
+	<h1>{@resource key="edit_entity" /}</h1>
+{:else}
+	<h1>{@resource groupName="sys/entity" subgroupName="general" key="new"/}</h1>
+{/model.id}
+
+<hr>
+
+<!-- See the related 'xxxx-form.js' file rendering details. -->
+<div class="autorender-placeholder"></div>

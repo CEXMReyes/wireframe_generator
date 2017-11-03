@@ -1,0 +1,17 @@
+[
+	{
+		"name": "urgencies",
+		"value": "low",
+		"caption": "Low"
+	},
+	{
+		"name": "urgencies",
+		"value": "medium",
+		"caption": "Medium"
+	},
+	{
+		"name": "urgencies",
+		"value": "high",
+		"caption": "High"
+	}
+]

@@ -1,0 +1,35 @@
+Department	Dropdown
+Case Type	Dropdown
+Sub Case Type	Dropdown
+Initial Contact Date	Date Picker
+Incident Date	Date Picker
+Incident Location	Dropdown
+Reporting Channel	Multipick	Email, Phone, Web Form, In Person, Social Media, Other
+Urgency	Dropdown	Low, Medium, High
+Primary Basis of Discrimination	Dropdown	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Secondary Basis of Discrimination	Dropdown	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Clery Report Filed?	Radio Button	Yes, No
+Complainant Type	Dropdown	Staff, Faculty, Security, Student, Alumni, Visitor, Vendor/Contractor, Other
+Vehicle Type	Dropdown	Car, Truck, Bus, Shuttle, Motorcycle, Segway, Drone, Other
+OSHA Report Filed?	Radio Button	Yes, No
+Corrective Action Required?	Radio Button	Yes, No
+Leave Required?	Radio Button
+Leave Type	Dropdown	Medical, Military, Paternity, Personal, Maternity, Temporary Layoff, Disciplinary, Other
+Other Leave Type	Text Box
+Leave Start Date	Date Picker
+Expected Return Date	Date Picker
+Police Report Filed?	Radio Button	Yes, No
+Reported To Campus Police?	Radio Button	Yes, No
+Legal Involved?	Radio Button	Yes, No
+Counsel Name	Text Box
+Assistance Program	Radio Button	Yes, No
+Amber Alert Filed?	Radio Button	Yes, No
+Date Amber Alert Filed	Date/Time Picker
+Alcohol Involved	Radio Button	Yes, No, Unknown
+Drugs Involved	Radio Button	Yes, No, Unknown
+Union Involved	Dropdown	Union A, Union B, Union C
+Grievance Type	Dropdown	Contract, Overtime, Workplace Conditions, Discrimination, Conflict, Other
+Other Grievance Type 	Text Box
+Interim Action	Dropdown	Relocation
+Actions Taken	Dropdown	Remediate, Investigate, Referral to Resources, Inquiry Only, Referral to Other Department
+Case Details	Text Editor

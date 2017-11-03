@@ -1,0 +1,8 @@
+{#model.id}
+    <h1>{@resource key="edit_issue" /}</h1>
+{:else}
+    <h1>{@resource key="new_issue" /}</h1>
+{/model.id}
+
+<!-- See the related 'xxxx-form.js' file rendering details. -->
+<div class="autorender-placeholder"></div>

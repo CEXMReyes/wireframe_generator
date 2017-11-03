@@ -1,0 +1,17 @@
+[
+	{
+		"name": "union_involveds",
+		"value": "union_a",
+		"caption": "Union A"
+	},
+	{
+		"name": "union_involveds",
+		"value": "union_b",
+		"caption": "Union B"
+	},
+	{
+		"name": "union_involveds",
+		"value": "union_c",
+		"caption": "Union C"
+	}
+]

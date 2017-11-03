@@ -1,0 +1,19 @@
+{
+  "name": "wireframe_generator",
+  "version": "1.0.0",
+  "description": "Scripts to generate wireframing files",
+  "main": "clear-files.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CEXMReyes/wireframe_generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CEXMReyes/wireframe_generator/issues"
+  },
+  "homepage": "https://github.com/CEXMReyes/wireframe_generator#readme"
+}

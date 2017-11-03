@@ -1,0 +1,32 @@
+[
+	{
+		"name": "grievance_types",
+		"value": "contract",
+		"caption": "Contract"
+	},
+	{
+		"name": "grievance_types",
+		"value": "overtime",
+		"caption": "Overtime"
+	},
+	{
+		"name": "grievance_types",
+		"value": "workplace_conditions",
+		"caption": "Workplace Conditions"
+	},
+	{
+		"name": "grievance_types",
+		"value": "discrimination",
+		"caption": "Discrimination"
+	},
+	{
+		"name": "grievance_types",
+		"value": "conflict",
+		"caption": "Conflict"
+	},
+	{
+		"name": "grievance_types",
+		"value": "other",
+		"caption": "Other"
+	}
+]

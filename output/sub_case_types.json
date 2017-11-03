@@ -1,0 +1,1364 @@
+[
+	{
+		"name": "sub_case_types",
+		"value": "food_quality",
+		"caption": "Food Quality",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "cleanliness",
+		"caption": "Cleanliness",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "staff",
+		"caption": "Staff",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "allergies",
+		"caption": "Allergies",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religious_accomodation",
+		"caption": "Religious Accomodation",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "selection",
+		"caption": "Selection",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "temperature",
+		"caption": "Temperature",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "wait_time",
+		"caption": "Wait Time",
+		"parents": ["complaints", "cafeteria"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "accomodation",
+		"caption": "Accomodation",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "extra_curricular",
+		"caption": "Extra Curricular",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "athletics",
+		"caption": "Athletics",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "campus_store",
+		"caption": "Campus Store",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "bullying",
+		"caption": "Bullying",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "discrimination",
+		"caption": "Discrimination",
+		"parents": ["complaints", "student_life"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "late_arrivals",
+		"caption": "Late Arrivals",
+		"parents": ["employee_relations", "attendance"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unscheduled_absense",
+		"caption": "Unscheduled Absense",
+		"parents": ["employee_relations", "attendance"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "age",
+		"caption": "Age",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "citizen_status",
+		"caption": "Citizen Status",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "disability",
+		"caption": "Disability",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender",
+		"caption": "Gender",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender_identity",
+		"caption": "Gender Identity",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "national_origin",
+		"caption": "National Origin",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pregnancy",
+		"caption": "Pregnancy",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "race",
+		"caption": "Race",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religion",
+		"caption": "Religion",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sex",
+		"caption": "Sex",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_orientation",
+		"caption": "Sexual Orientation",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "veteran_status",
+		"caption": "Veteran status",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "ethnicity",
+		"caption": "Ethnicity",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "medical_history",
+		"caption": "Medical History",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["employee_relations", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_harassment",
+		"caption": "Sexual Harassment",
+		"parents": ["employee_relations", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "physical",
+		"caption": "Physical",
+		"parents": ["employee_relations", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_physical",
+		"caption": "Non-Physical",
+		"parents": ["employee_relations", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "cyber",
+		"caption": "Cyber",
+		"parents": ["employee_relations", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "behavior",
+		"caption": "Behavior",
+		"parents": ["employee_relations", "misconduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "retaliation",
+		"caption": "Retaliation",
+		"parents": ["employee_relations", "misconduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unfair_treatment",
+		"caption": "Unfair Treatment",
+		"parents": ["employee_relations", "misconduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_violation",
+		"caption": "Policy Violation",
+		"parents": ["employee_relations", "misconduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "overtime",
+		"caption": "Overtime",
+		"parents": ["employee_relations", "payroll"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pay_dispute",
+		"caption": "Pay Dispute",
+		"parents": ["employee_relations", "payroll"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pension",
+		"caption": "Pension",
+		"parents": ["employee_relations", "payroll"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "contract_dispute",
+		"caption": "Contract Dispute",
+		"parents": ["employee_relations", "payroll"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "benefits",
+		"caption": "Benefits",
+		"parents": ["employee_relations", "payroll"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "performance_review",
+		"caption": "Performance Review",
+		"parents": ["employee_relations", "performance_management"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "disciplinary_action",
+		"caption": "Disciplinary Action",
+		"parents": ["employee_relations", "performance_management"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "training",
+		"caption": "Training",
+		"parents": ["employee_relations", "performance_management"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_a",
+		"caption": "Policy A",
+		"parents": ["employee_relations", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_b",
+		"caption": "Policy B",
+		"parents": ["employee_relations", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_c",
+		"caption": "Policy C",
+		"parents": ["employee_relations", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "remedial",
+		"caption": "Remedial",
+		"parents": ["employee_relations", "training"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "health_safety",
+		"caption": "Health & Safety",
+		"parents": ["employee_relations", "training"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "conduct",
+		"caption": "Conduct",
+		"parents": ["employee_relations", "training"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_discrimination",
+		"caption": "Non-Discrimination",
+		"parents": ["employee_relations", "training"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "security",
+		"caption": "Security",
+		"parents": ["employee_relations", "training"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "assault",
+		"caption": "Assault",
+		"parents": ["employee_relations", "workplace_violence"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "stalking",
+		"caption": "Stalking",
+		"parents": ["employee_relations", "workplace_violence"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "threat",
+		"caption": "Threat",
+		"parents": ["employee_relations", "workplace_violence"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual",
+		"caption": "Sexual",
+		"parents": ["employee_relations", "workplace_violence"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "age",
+		"caption": "Age",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "citizen_status",
+		"caption": "Citizen Status",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "disability",
+		"caption": "Disability",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender",
+		"caption": "Gender",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender_identity",
+		"caption": "Gender Identity",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "national_origin",
+		"caption": "National Origin",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pregnancy",
+		"caption": "Pregnancy",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "race",
+		"caption": "Race",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religion",
+		"caption": "Religion",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sex",
+		"caption": "Sex",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_orientation",
+		"caption": "Sexual Orientation",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "veteran_status",
+		"caption": "Veteran status",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "ethnicity",
+		"caption": "Ethnicity",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "medical_history",
+		"caption": "Medical History",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["equal_opportunity", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "accessibility",
+		"caption": "Accessibility",
+		"parents": ["equal_opportunity", "failure_to_accommodate"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "title_vi",
+		"caption": "Title VI",
+		"parents": ["equal_opportunity", "failure_to_accommodate"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "title_vii",
+		"caption": "Title VII",
+		"parents": ["equal_opportunity", "failure_to_accommodate"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "allergies",
+		"caption": "Allergies",
+		"parents": ["equal_opportunity", "failure_to_accommodate"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religious_preference",
+		"caption": "Religious Preference",
+		"parents": ["equal_opportunity", "failure_to_accommodate"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_a",
+		"caption": "Policy A",
+		"parents": ["equal_opportunity", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_b",
+		"caption": "Policy B",
+		"parents": ["equal_opportunity", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_c",
+		"caption": "Policy C",
+		"parents": ["equal_opportunity", "policy_violation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "no_signage",
+		"caption": "No Signage",
+		"parents": ["health_safety", "signage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "damaged",
+		"caption": "Damaged",
+		"parents": ["health_safety", "signage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "misplaced",
+		"caption": "Misplaced",
+		"parents": ["health_safety", "signage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "language_issue",
+		"caption": "Language Issue",
+		"parents": ["health_safety", "signage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "head",
+		"caption": "Head",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "arm",
+		"caption": "Arm",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "leg",
+		"caption": "Leg",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "torso",
+		"caption": "Torso",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "digits",
+		"caption": "Digits",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "foot",
+		"caption": "Foot",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "hand",
+		"caption": "Hand",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "internal",
+		"caption": "Internal",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "eyes",
+		"caption": "Eyes",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "",
+		"caption": "",
+		"parents": ["health_safety", "workplace_injury"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "physical",
+		"caption": "Physical",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "stalking",
+		"caption": "Stalking",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "threat",
+		"caption": "Threat",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual",
+		"caption": "Sexual",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "verbal",
+		"caption": "Verbal",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_verbal",
+		"caption": "Non-Verbal",
+		"parents": ["hr", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "act_153",
+		"caption": "Act 153",
+		"parents": ["hr", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee",
+		"caption": "Employee",
+		"parents": ["hr", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "credit_check",
+		"caption": "Credit Check",
+		"parents": ["hr", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "criminal_backgroud_check",
+		"caption": "Criminal Backgroud Check",
+		"parents": ["hr", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee_fraud",
+		"caption": "Employee Fraud",
+		"parents": ["hr", "fraud"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "student_fraud",
+		"caption": "Student Fraud",
+		"parents": ["hr", "fraud"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_harassment",
+		"caption": "Sexual Harassment",
+		"parents": ["hr", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "physical",
+		"caption": "Physical",
+		"parents": ["hr", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_physical",
+		"caption": "Non-Physical",
+		"parents": ["hr", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "cyber",
+		"caption": "Cyber",
+		"parents": ["hr", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_a",
+		"caption": "Policy A",
+		"parents": ["hr", "policy_violations"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_b",
+		"caption": "Policy B",
+		"parents": ["hr", "policy_violations"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_c",
+		"caption": "Policy C",
+		"parents": ["hr", "policy_violations"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "over_5000",
+		"caption": "Over $5000",
+		"parents": ["hr", "theft"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "under_5000",
+		"caption": "Under $5000",
+		"parents": ["hr", "theft"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee_property",
+		"caption": "Employee Property",
+		"parents": ["hr", "vandalism_sabotage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "school_propery",
+		"caption": "School Propery",
+		"parents": ["hr", "vandalism_sabotage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "student_property",
+		"caption": "Student Property",
+		"parents": ["hr", "vandalism_sabotage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "injury",
+		"caption": "Injury",
+		"parents": ["hr", "workplace_accident"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_injury",
+		"caption": "Non-Injury",
+		"parents": ["hr", "workplace_accident"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "vehicle_related",
+		"caption": "Vehicle Related",
+		"parents": ["hr", "workplace_accident"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "vendor",
+		"caption": "Vendor",
+		"parents": ["legal", "contract_dispute"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "union",
+		"caption": "Union",
+		"parents": ["legal", "contract_dispute"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee",
+		"caption": "Employee",
+		"parents": ["legal", "contract_dispute"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "supplier",
+		"caption": "Supplier",
+		"parents": ["legal", "contract_dispute"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "government",
+		"caption": "Government",
+		"parents": ["legal", "contract_dispute"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "inquiry",
+		"caption": "Inquiry",
+		"parents": ["legal", "counsel"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "litigation",
+		"caption": "Litigation",
+		"parents": ["legal", "counsel"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "department_a",
+		"caption": "Department A",
+		"parents": ["legal", "investigation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "department_b",
+		"caption": "Department B",
+		"parents": ["legal", "investigation"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "fire",
+		"caption": "Fire",
+		"parents": ["security", "alarm"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "burglary",
+		"caption": "Burglary",
+		"parents": ["security", "alarm"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "illegal",
+		"caption": "Illegal",
+		"parents": ["security", "alcohol_drugs"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "legal",
+		"caption": "Legal",
+		"parents": ["security", "alcohol_drugs"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "prescription",
+		"caption": "Prescription",
+		"parents": ["security", "alcohol_drugs"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "act_153",
+		"caption": "Act 153",
+		"parents": ["security", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee",
+		"caption": "Employee",
+		"parents": ["security", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "credit_check",
+		"caption": "Credit Check",
+		"parents": ["security", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "criminal_backgroud_check",
+		"caption": "Criminal Backgroud Check",
+		"parents": ["security", "background_check"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "phone",
+		"caption": "Phone",
+		"parents": ["security", "bomb_threat"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "email",
+		"caption": "Email",
+		"parents": ["security", "bomb_threat"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "social_media",
+		"caption": "Social Media",
+		"parents": ["security", "bomb_threat"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "damaged_equipment",
+		"caption": "Damaged Equipment",
+		"parents": ["security", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "inadequate_staffing",
+		"caption": "Inadequate Staffing",
+		"parents": ["security", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "building_access_issue",
+		"caption": "Building Access Issue",
+		"parents": ["security", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee_property",
+		"caption": "Employee Property",
+		"parents": ["security", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "school_propery",
+		"caption": "School Propery",
+		"parents": ["security", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "student_property",
+		"caption": "Student Property",
+		"parents": ["security", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "over_5000",
+		"caption": "Over $5000",
+		"parents": ["security", "theft"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "under_5000",
+		"caption": "Under $5000",
+		"parents": ["security", "theft"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "late_arrivals",
+		"caption": "Late Arrivals",
+		"parents": ["student_academic_affairs", "attendance"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unscheduled_absense",
+		"caption": "Unscheduled Absense",
+		"parents": ["student_academic_affairs", "attendance"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "exam",
+		"caption": "Exam",
+		"parents": ["student_academic_affairs", "cheating"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "test",
+		"caption": "Test",
+		"parents": ["student_academic_affairs", "cheating"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "essay",
+		"caption": "Essay",
+		"parents": ["student_academic_affairs", "cheating"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "online_course",
+		"caption": "Online Course",
+		"parents": ["student_academic_affairs", "cheating"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "impersonation",
+		"caption": "Impersonation",
+		"parents": ["student_academic_affairs", "cheating"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unfair_treatment",
+		"caption": "Unfair Treatment",
+		"parents": ["student_academic_affairs", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unfair_examination",
+		"caption": "Unfair Examination",
+		"parents": ["student_academic_affairs", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "setting_materials",
+		"caption": "Setting/Materials",
+		"parents": ["student_academic_affairs", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "instruction_quality",
+		"caption": "Instruction Quality",
+		"parents": ["student_academic_affairs", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "unhelpful_response",
+		"caption": "Unhelpful Response",
+		"parents": ["student_academic_affairs", "complaint"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "suspension",
+		"caption": "Suspension",
+		"parents": ["student_academic_affairs", "corrective_action"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "penalty",
+		"caption": "Penalty",
+		"parents": ["student_academic_affairs", "corrective_action"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "transfer",
+		"caption": "Transfer",
+		"parents": ["student_academic_affairs", "corrective_action"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "probation",
+		"caption": "Probation",
+		"parents": ["student_academic_affairs", "corrective_action"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "tutoring",
+		"caption": "Tutoring",
+		"parents": ["student_academic_affairs", "corrective_action"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other_student",
+		"caption": "Other Student",
+		"parents": ["student_academic_affairs", "plagiarism"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "online",
+		"caption": "Online",
+		"parents": ["student_academic_affairs", "plagiarism"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "published_work",
+		"caption": "Published Work",
+		"parents": ["student_academic_affairs", "plagiarism"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "textbook",
+		"caption": "Textbook",
+		"parents": ["student_academic_affairs", "plagiarism"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual",
+		"caption": "Sexual",
+		"parents": ["student_conduct", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "verbal",
+		"caption": "Verbal",
+		"parents": ["student_conduct", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_verbal",
+		"caption": "Non-Verbal",
+		"parents": ["student_conduct", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_a",
+		"caption": "Policy A",
+		"parents": ["student_conduct", "code_of_conduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_b",
+		"caption": "Policy B",
+		"parents": ["student_conduct", "code_of_conduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "policy_c",
+		"caption": "Policy C",
+		"parents": ["student_conduct", "code_of_conduct"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "age",
+		"caption": "Age",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "citizen_status",
+		"caption": "Citizen Status",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "disability",
+		"caption": "Disability",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender",
+		"caption": "Gender",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender_identity",
+		"caption": "Gender Identity",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "national_origin",
+		"caption": "National Origin",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pregnancy",
+		"caption": "Pregnancy",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "race",
+		"caption": "Race",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religion",
+		"caption": "Religion",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sex",
+		"caption": "Sex",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_orientation",
+		"caption": "Sexual Orientation",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "veteran_status",
+		"caption": "Veteran status",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "ethnicity",
+		"caption": "Ethnicity",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "medical_history",
+		"caption": "Medical History",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["student_conduct", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_harassment",
+		"caption": "Sexual Harassment",
+		"parents": ["student_conduct", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "physical",
+		"caption": "Physical",
+		"parents": ["student_conduct", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_physical",
+		"caption": "Non-Physical",
+		"parents": ["student_conduct", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "cyber",
+		"caption": "Cyber",
+		"parents": ["student_conduct", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "drugs",
+		"caption": "Drugs",
+		"parents": ["student_conduct", "substance_abuse"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "alcohol",
+		"caption": "Alcohol",
+		"parents": ["student_conduct", "substance_abuse"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "prescription",
+		"caption": "Prescription",
+		"parents": ["student_conduct", "substance_abuse"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["student_conduct", "substance_abuse"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "employee_property",
+		"caption": "Employee Property",
+		"parents": ["student_housing", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "school_propery",
+		"caption": "School Propery",
+		"parents": ["student_housing", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "student_property",
+		"caption": "Student Property",
+		"parents": ["student_housing", "property_damage"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual",
+		"caption": "Sexual",
+		"parents": ["title_ix", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "verbal",
+		"caption": "Verbal",
+		"parents": ["title_ix", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_verbal",
+		"caption": "Non-Verbal",
+		"parents": ["title_ix", "assault"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "age",
+		"caption": "Age",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "citizen_status",
+		"caption": "Citizen Status",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "disability",
+		"caption": "Disability",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender",
+		"caption": "Gender",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "gender_identity",
+		"caption": "Gender Identity",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "national_origin",
+		"caption": "National Origin",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "pregnancy",
+		"caption": "Pregnancy",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "race",
+		"caption": "Race",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "religion",
+		"caption": "Religion",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sex",
+		"caption": "Sex",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_orientation",
+		"caption": "Sexual Orientation",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "veteran_status",
+		"caption": "Veteran status",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "ethnicity",
+		"caption": "Ethnicity",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "medical_history",
+		"caption": "Medical History",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["title_ix", "discrimination"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "sexual_harassment",
+		"caption": "Sexual Harassment",
+		"parents": ["title_ix", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "physical",
+		"caption": "Physical",
+		"parents": ["title_ix", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "non_physical",
+		"caption": "Non-Physical",
+		"parents": ["title_ix", "harassment"]
+	},
+	{
+		"name": "sub_case_types",
+		"value": "cyber",
+		"caption": "Cyber",
+		"parents": ["title_ix", "harassment"]
+	}
+]

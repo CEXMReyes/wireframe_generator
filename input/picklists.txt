@@ -1,0 +1,85 @@
+Department	Case Type	Sub Case Type
+Complaints	Admissions
+Complaints	Cafeteria	Food Quality, Cleanliness, Staff, Allergies, Religious Accomodation, Selection, Temperature, Wait Time
+Complaints	Campus Programs
+Complaints	Financial Aid
+Complaints	Parking Administration
+Complaints	Student Life	Accomodation, Extra Curricular, Athletics, Campus Store, Bullying, Discrimination
+Employee Relations	Grievance
+Employee Relations	Attendance	Late Arrivals, Unscheduled Absense
+Employee Relations	Compensation
+Employee Relations	Discrimination	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Employee Relations	Harassment	Sexual Harassment, Physical, Non-Physical, Cyber
+Employee Relations	Leaves Administration
+Employee Relations	Misconduct	Behavior, Retaliation, Unfair Treatment, Policy Violation
+Employee Relations	Payroll	Overtime, Pay Dispute, Pension, Contract Dispute, Benefits
+Employee Relations	Performance Management	Performance Review, Disciplinary Action, Training
+Employee Relations	Policy Violation	Policy A, Policy B, Policy C
+Employee Relations	Training	Remedial, Health & Safety, Conduct, Non-Discrimination, Security
+Employee Relations	Workplace Violence	Assault, Stalking, Threat, Sexual
+Equal Opportunity	Accomodation
+Equal Opportunity	Discrimination	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Equal Opportunity	Failure To Accommodate	Accessibility, Title VI, Title VII, Allergies, Religious Preference
+Equal Opportunity	Policy Violation	Policy A, Policy B, Policy C
+Equal Opportunity	Unfair Treatment
+Health & Safety	Near Miss
+Health & Safety	OSHA
+Health & Safety	Signage	No Signage, Damaged, Misplaced, Language Issue
+Health & Safety	Slip & Fall
+Health & Safety	Vehicle Accident
+Health & Safety	Workplace Injury	Head, Arm, Leg, Torso, Digits, Foot, Hand, Internal, Eyes,
+HR	Assault	Physical, Stalking, Threat, Sexual, Verbal, Non-Verbal
+HR	Background Check	Act 153, Employee, Credit Check, Criminal Backgroud Check
+HR	Fraud	Employee Fraud, Student Fraud
+HR	Harassment	Sexual Harassment, Physical, Non-Physical, Cyber
+HR	Other
+HR	Policy Violations	Policy A, Policy B, Policy C
+HR	Theft	Over $5000, Under $5000
+HR	Vandalism/Sabotage	Employee Property, School Propery, Student Property
+HR	Workplace Accident	Injury, Non-Injury, Vehicle Related
+Legal	Lawsuit
+Legal	Contract Dispute	Vendor, Union, Employee, Supplier, Government
+Legal	Counsel	Inquiry, Litigation
+Legal	Dismissal
+Legal	Investigation	Department A, Department B
+Security	Alarm	Fire, Burglary
+Security	Alcohol/Drugs	Illegal, Legal, Prescription
+Security	Background Check	Act 153, Employee, Credit Check, Criminal Backgroud Check
+Security	Bomb Threat	Phone, Email, Social Media
+Security	Bus Incident
+Security	Class Incident
+Security	Complaint	Damaged Equipment, Inadequate Staffing, Building Access Issue
+Security	Criminal
+Security	Incident Report
+Security	Inquiry
+Security	Gas Leak
+Security	Lockdown
+Security	Missing Child
+Security	Other
+Security	Property Damage	Employee Property, School Propery, Student Property
+Security	Theft	Over $5000, Under $5000
+Student Academic Affairs	Attendance	Late Arrivals, Unscheduled Absense
+Student Academic Affairs	Cheating	Exam, Test, Essay, Online Course, Impersonation
+Student Academic Affairs	Complaint	Unfair Treatment, Unfair Examination, Setting/Materials, Instruction Quality, Unhelpful Response
+Student Academic Affairs	Corrective Action	Suspension, Penalty, Transfer, Probation, Tutoring
+Student Academic Affairs	Other
+Student Academic Affairs	Plagiarism	Other Student, Online, Published Work, Textbook
+Student Academic Affairs	Performance
+Student Academic Affairs	Scholarship Evaluation
+Student Conduct	Assault	Sexual, Verbal, Non-Verbal
+Student Conduct	Behavior
+Student Conduct	Code of Conduct	Policy A, Policy B, Policy C
+Student Conduct	Discrimination	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Student Conduct	Harassment	Sexual Harassment, Physical, Non-Physical, Cyber
+Student Conduct	Incident
+Student Conduct	Substance Abuse	Drugs, Alcohol, Prescription, Other
+Student Housing	Eviction Notice
+Student Housing	Incident
+Student Housing	Noise Complaint
+Student Housing	Odor Complaint
+Student Housing	Property Damage	Employee Property, School Propery, Student Property
+Student Housing	Roommate Complaint
+Title IX	Assault	Sexual, Verbal, Non-Verbal
+Title IX	Discrimination	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Title IX	Harassment	Sexual Harassment, Physical, Non-Physical, Cyber
+Title IX	Other

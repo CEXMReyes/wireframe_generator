@@ -1,0 +1,506 @@
+[
+	{
+		"name": "case_types",
+		"value": "admissions",
+		"caption": "Admissions",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "cafeteria",
+		"caption": "Cafeteria",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "campus_programs",
+		"caption": "Campus Programs",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "financial_aid",
+		"caption": "Financial Aid",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "parking_administration",
+		"caption": "Parking Administration",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "student_life",
+		"caption": "Student Life",
+		"parents": ["complaints"]
+	},
+	{
+		"name": "case_types",
+		"value": "grievance",
+		"caption": "Grievance",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "attendance",
+		"caption": "Attendance",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "compensation",
+		"caption": "Compensation",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "discrimination",
+		"caption": "Discrimination",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "harassment",
+		"caption": "Harassment",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "leaves_administration",
+		"caption": "Leaves Administration",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "misconduct",
+		"caption": "Misconduct",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "payroll",
+		"caption": "Payroll",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "performance_management",
+		"caption": "Performance Management",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "policy_violation",
+		"caption": "Policy Violation",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "training",
+		"caption": "Training",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "workplace_violence",
+		"caption": "Workplace Violence",
+		"parents": ["employee_relations"]
+	},
+	{
+		"name": "case_types",
+		"value": "accomodation",
+		"caption": "Accomodation",
+		"parents": ["equal_opportunity"]
+	},
+	{
+		"name": "case_types",
+		"value": "discrimination",
+		"caption": "Discrimination",
+		"parents": ["equal_opportunity"]
+	},
+	{
+		"name": "case_types",
+		"value": "failure_to_accommodate",
+		"caption": "Failure To Accommodate",
+		"parents": ["equal_opportunity"]
+	},
+	{
+		"name": "case_types",
+		"value": "policy_violation",
+		"caption": "Policy Violation",
+		"parents": ["equal_opportunity"]
+	},
+	{
+		"name": "case_types",
+		"value": "unfair_treatment",
+		"caption": "Unfair Treatment",
+		"parents": ["equal_opportunity"]
+	},
+	{
+		"name": "case_types",
+		"value": "near_miss",
+		"caption": "Near Miss",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "osha",
+		"caption": "OSHA",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "signage",
+		"caption": "Signage",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "slip_fall",
+		"caption": "Slip & Fall",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "vehicle_accident",
+		"caption": "Vehicle Accident",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "workplace_injury",
+		"caption": "Workplace Injury",
+		"parents": ["health_safety"]
+	},
+	{
+		"name": "case_types",
+		"value": "assault",
+		"caption": "Assault",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "background_check",
+		"caption": "Background Check",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "fraud",
+		"caption": "Fraud",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "harassment",
+		"caption": "Harassment",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "policy_violations",
+		"caption": "Policy Violations",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "theft",
+		"caption": "Theft",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "vandalism_sabotage",
+		"caption": "Vandalism/Sabotage",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "workplace_accident",
+		"caption": "Workplace Accident",
+		"parents": ["hr"]
+	},
+	{
+		"name": "case_types",
+		"value": "lawsuit",
+		"caption": "Lawsuit",
+		"parents": ["legal"]
+	},
+	{
+		"name": "case_types",
+		"value": "contract_dispute",
+		"caption": "Contract Dispute",
+		"parents": ["legal"]
+	},
+	{
+		"name": "case_types",
+		"value": "counsel",
+		"caption": "Counsel",
+		"parents": ["legal"]
+	},
+	{
+		"name": "case_types",
+		"value": "dismissal",
+		"caption": "Dismissal",
+		"parents": ["legal"]
+	},
+	{
+		"name": "case_types",
+		"value": "investigation",
+		"caption": "Investigation",
+		"parents": ["legal"]
+	},
+	{
+		"name": "case_types",
+		"value": "alarm",
+		"caption": "Alarm",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "alcohol_drugs",
+		"caption": "Alcohol/Drugs",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "background_check",
+		"caption": "Background Check",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "bomb_threat",
+		"caption": "Bomb Threat",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "bus_incident",
+		"caption": "Bus Incident",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "class_incident",
+		"caption": "Class Incident",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "complaint",
+		"caption": "Complaint",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "criminal",
+		"caption": "Criminal",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "incident_report",
+		"caption": "Incident Report",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "inquiry",
+		"caption": "Inquiry",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "gas_leak",
+		"caption": "Gas Leak",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "lockdown",
+		"caption": "Lockdown",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "missing_child",
+		"caption": "Missing Child",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "property_damage",
+		"caption": "Property Damage",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "theft",
+		"caption": "Theft",
+		"parents": ["security"]
+	},
+	{
+		"name": "case_types",
+		"value": "attendance",
+		"caption": "Attendance",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "cheating",
+		"caption": "Cheating",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "complaint",
+		"caption": "Complaint",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "corrective_action",
+		"caption": "Corrective Action",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "plagiarism",
+		"caption": "Plagiarism",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "performance",
+		"caption": "Performance",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "scholarship_evaluation",
+		"caption": "Scholarship Evaluation",
+		"parents": ["student_academic_affairs"]
+	},
+	{
+		"name": "case_types",
+		"value": "assault",
+		"caption": "Assault",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "behavior",
+		"caption": "Behavior",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "code_of_conduct",
+		"caption": "Code of Conduct",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "discrimination",
+		"caption": "Discrimination",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "harassment",
+		"caption": "Harassment",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "incident",
+		"caption": "Incident",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "substance_abuse",
+		"caption": "Substance Abuse",
+		"parents": ["student_conduct"]
+	},
+	{
+		"name": "case_types",
+		"value": "eviction_notice",
+		"caption": "Eviction Notice",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "incident",
+		"caption": "Incident",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "noise_complaint",
+		"caption": "Noise Complaint",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "odor_complaint",
+		"caption": "Odor Complaint",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "property_damage",
+		"caption": "Property Damage",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "roommate_complaint",
+		"caption": "Roommate Complaint",
+		"parents": ["student_housing"]
+	},
+	{
+		"name": "case_types",
+		"value": "assault",
+		"caption": "Assault",
+		"parents": ["title_ix"]
+	},
+	{
+		"name": "case_types",
+		"value": "discrimination",
+		"caption": "Discrimination",
+		"parents": ["title_ix"]
+	},
+	{
+		"name": "case_types",
+		"value": "harassment",
+		"caption": "Harassment",
+		"parents": ["title_ix"]
+	},
+	{
+		"name": "case_types",
+		"value": "other",
+		"caption": "Other",
+		"parents": ["title_ix"]
+	}
+]

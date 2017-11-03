@@ -1,0 +1,45 @@
+<!-- Buttons to edit and delete -->
+<div class="pull-right btn-toolbar-sticky no-print" data-print="false">
+  <div class="btn-toolbar" data-readonly="true">
+    <a class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="bottom" title="{@resource key="edit" /}" id="edit" data-disable-rule="lockedByAnotherUser">
+    <img src="/img/bootstrap-custom/edit-profile-white.png"></img>
+    </a>
+  </div>
+  <div class="btn-toolbar" data-readonly="false">
+      <div class="btn-group">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="tooltip"
+                  data-placement="bottom" title="{@resource key="save" /}" id="save"
+                  data-disable-rule="lockedByAnotherUser" data-ladda-model-save>
+              <img src="/img/bootstrap-custom/save-white.png"></img>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg dropdown-toggle"
+                  data-toggle="dropdown" data-disable-rule="lockedByAnotherUser"
+                  data-ladda-disable-on-save>
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu styled-dropdown" role="menu">
+              <li id="save-and-copy"><a>
+                {@resource key="save_and_copy" /}</a></li>
+          </ul>
+      </div>
+    <a class="btn btn-danger btn-lg" data-toggle="tooltip" data-placement="bottom" title="{@resource key="cancel" /}" id="cancel">
+    <img src="/img/bootstrap-custom/close-white.png"></img>
+    </a>
+  </div>
+</div>
+
+<!-- Headers -->
+<div class="no-print">
+  <h1>{model.childNumber}</h1>
+  <!-- Workflow 2.0 -->
+  <div id="workflow-current-states"/>
+  <br/>
+  <br/>
+  <hr>
+</div>
+<div class="print-only">
+  <span style="font-weight: bold; border-left: 5px #999 solid; padding-left: 10px;"><span>{@resource key="entity" /}</span>&nbsp;&#124;&nbsp;<span class="green-font">{model.caseId__caseNumber}</span>&nbsp;&#47;&nbsp;<span>{model.id}</span></span>
+</div>
+
+<!-- See the related 'xxxx-form.js' file rendering details. -->
+<div class="autorender-placeholder"></div>
