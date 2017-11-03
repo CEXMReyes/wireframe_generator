@@ -1,12 +1,15 @@
 # Wireframe Generator 3.x
 
-A collection of scripts to generate 3.x wireframing files. A proper UI will eventually come
+A collection of scripts to generate 3.x wireframing files. A proper UI will come eventually
 
 ## Getting Started
 
 ### Prerequisites
 
-Make sure to install all packages in the package.json
+Make sure to install all packages in the package.json.
+
+
+Create a folder called **output**, this is where the generated files will be stored.
 
 ### Installing
 
@@ -15,6 +18,14 @@ Clone repo, then run npm install.
 ## Using the Scripts
 
 ### generate-fields.js
+
+Run **node generate-fields.js** [optionalName, customFlag]
+
+Script will default to creating a case entity. In order to specify otherwise, use arguments:
+
+**Example:**
+  * **node generate-fields.js party**
+  * **node generate-fields.js interview custom**
 
 **Generates:**
   * **index.js**
@@ -36,16 +47,16 @@ Union Involved | Dropdown | Union A, Union B, Union C
 Grievance Type | Dropdown | Contract, Overtime, Workplace Conditions, Discrimination, Conflict, Other
 Other Grievance Type | Text Box
 
-Run **node generate-fields.js** [optionalName, customFlag]
-
-Script will default to creating a case entity. In order to specify otherwise, use arguments:
-
-**Example:**
-  * **node generate-fields.js party**
-  * **node generate-fields.js interview custom**
-
 
 ### generate-forms.js
+
+Run **node generate-form.js** [optionalName]
+
+Script will default to creating a case-capture form. In order to specify otherwise, use arguments:
+
+**Example:**
+  * **node generate-form.js case-overview**
+  * **node generate-form.js party-details**
 
 **Generates:**
   * **form.js**
@@ -65,16 +76,10 @@ Union Involved | Sub Case Type = Union | Case Type = Grievance &#124;&#124; Sub 
 Grievance Type |  | Case Type = Grievance &#124;&#124; Sub Case Type = Union
 Other Grievance Type  | Grievance Type = Other | Grievance Type = Other
 
-Run **node generate-form.js** [optionalName]
-
-Script will default to creating a case-capture form. In order to specify otherwise, use arguments:
-
-**Example:**
-  * **node generate-form.js case-overview**
-  * **node generate-form.js party-details**
-
 
 ### generate-picklist.js
+
+Run **node generate-picklist.js**
 
 **Generates:**
   * **parentLists.json**
@@ -96,5 +101,3 @@ Employee Relations | Grievance
 Employee Relations | Attendance | Late Arrivals, Unscheduled Absense
 Employee Relations | Compensation
 Employee Relations | Discrimination | Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
-
-Run **node generate-picklist.js**
