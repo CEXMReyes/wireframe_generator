@@ -101,3 +101,10 @@ Employee Relations | Grievance
 Employee Relations | Attendance | Late Arrivals, Unscheduled Absense
 Employee Relations | Compensation
 Employee Relations | Discrimination | Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+
+
+### clear-files.js
+
+Run **node clear-files.js**
+
+This script will delete all files in the **output** folder.
