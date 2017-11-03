@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/CEXMReyes/wireframe_generator/issues"
   },
-  "homepage": "https://github.com/CEXMReyes/wireframe_generator#readme"
+  "homepage": "https://github.com/CEXMReyes/wireframe_generator#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "moment": "^2.19.1",
+    "pluralize": "^7.0.0"
+  }
 }
