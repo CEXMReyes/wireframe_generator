@@ -113,13 +113,13 @@ function generateFields(listOfLists) {
 }
 
 function correctTypeName(type) {
-	if(_.includes(type.toLowerCase(), 'drop')) return 'picklist';
-	if(_.includes(type.toLowerCase(), 'multi')) return 'picklist[]';
-	if(_.includes(type.toLowerCase(), 'date')) return 'date';
-	if(_.includes(type.toLowerCase(), 'radio')) return 'radio';
-	if(_.includes(type.toLowerCase(), 'box')) return 'textbox';
-	if(_.includes(type.toLowerCase(), 'editor')) return 'texteditor';
-	if(_.includes(type.toLowerCase(), 'area')) return 'texteditor';
+	type = type.toLowerCase().trim();
+	if(_.includes(type, 'drop') || type === 'picklist') return 'picklist';
+	if(_.includes(type, 'multi') || type === 'picklist[]') return 'picklist[]';
+	if(_.includes(type, 'editor') || _.includes(type, 'area')) return 'texteditor';
+	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
+	if(_.includes(type, 'date')) return 'date';
+	if(_.includes(type, 'radio')) return 'radio';
 }
 
 function generatePicklist(listName, list) {
