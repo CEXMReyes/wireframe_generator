@@ -120,6 +120,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
 	if(_.includes(type, 'date')) return 'date';
 	if(_.includes(type, 'radio')) return 'radio';
+	if(_.includes(type, 'user')) return 'user';
 }
 
 function generatePicklist(listName, list) {
