@@ -87,6 +87,7 @@ function generateIndex(data) {
 function generateFields(listOfLists) {
 	return _.map(listOfLists, function (list) {
 		var fieldtype = correctTypeName(list[1]);
+		if(!fieldtype) throw 'input contains an invalid type';
 
 		var field = {
 			field: _.camelCase(list[0]),

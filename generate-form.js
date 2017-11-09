@@ -40,7 +40,6 @@ var caseResolutionFooter = [
 		{ field: 'closeReason', readOnly: true, displayRule: 'isClosed' },
 		{ field: 'reopenReason', readOnly: true, displayRule: 'wasReopened' }
 ];
-var closeMandatory = { condition: 'isClosed', fields: ['closeReason'] };
 var childHeader = [
 	{
 		field: 'caseId',
@@ -53,17 +52,29 @@ var partyTypeOptions = {
 
 // Functions
 function generateForm(listOfLists) {
+	if(_.includes(formName, 'case')) addValidation('closeReason', 'isClosed');
 	if(!_.includes(formName, 'case')) addValidation('caseId', '*');
-	var output = _.map(listOfLists, function (list) {
-		var field = {
-			field: _.camelCase(list[0]),
+	var section = { type: 'section' };
+	var isSection = false;
+	var output = _.reduce(listOfLists, function (acc, list) {
+		if(list[0].toLowerCase() === '# section') {
+			section.caption = _.snakeCase(list[1]);
+			section.elements = [];
+			isSection = true;
+			return acc;
 		}
+		if(list[0].toLowerCase() === '# end') {
+			isSection = false;
+			acc.push(section);
+			return acc;
+		}
+
+		var field = { field: _.camelCase(list[0]) }
 
 		if(list[1]) {
 			var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
 			addValidation(field.field, rule);
 		}
-
 		if(list[2]) {
 			if(_.includes(list[2], '||')) {
 				var multiRules = _.map(list[2].split('||'), function(item) {
@@ -74,9 +85,14 @@ function generateForm(listOfLists) {
 				field.displayRule = generateRules(list[2]);
 			}
 		}
+		if(isSection) {
+			section.elements.push(field);
+		} else {
+			acc.push(field);
+		}
 
-		return field;
-	});
+		return acc;
+	}, []);
 
 	if(formName === 'case-overview') {
 		output = caseOverviewHeader.concat(output);
