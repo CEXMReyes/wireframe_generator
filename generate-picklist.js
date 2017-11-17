@@ -17,7 +17,7 @@ fs.readFile(path.join(inDir, 'picklists.txt'), 'utf8', function(err, data) {
 
 // Functions
 function generatePickLists(listOfLists) {
-	var listName = _.snakeCase(pluralize(listOfLists[0][listOfLists[0].length - 1]));
+	var listName = _.snakeCase(pluralize(listOfLists[0][listOfLists[0].length - 1].trim()));
 	var hasParent = listOfLists[0].length > 1;
 	var nextList = hasParent ? [listOfLists[0].slice(0, listOfLists[0].length -1)] : [];
 
@@ -51,7 +51,7 @@ function generatePickLists(listOfLists) {
 
 function generateOptions(options) {
 	var listNames = _.map(options, function(item) {
-		return _.snakeCase(pluralize(item));
+		return _.snakeCase(pluralize(item.trim()));
 	});
 
 	var output = _.reduce(listNames, function(acc, item, key) {

@@ -96,7 +96,7 @@ function generateFields(listOfLists) {
 		}
 
 		if(_.includes(fieldtype, 'picklist')) {
-			var picklistName = _.snakeCase(pluralize(list[0]));
+			var picklistName = _.snakeCase(pluralize(list[0].trim()));
 			field.typeOptions = { picklistName: picklistName };
 			if(list[2]) writeToFile(picklistName + '.json', generatePicklist(picklistName, list[2]));
 			addOptions(picklistName);
