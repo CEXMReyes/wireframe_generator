@@ -77,7 +77,7 @@ function shouldStoreNext(collection, nextItem) {
 function arrayEquals(a, b) {
 	if(a.length !== b.length) return false;
 	return _.every(a, function(value, key) {
-		return value === b[key];
+		return value.trim() === b[key].trim();
 	});
 }
 
