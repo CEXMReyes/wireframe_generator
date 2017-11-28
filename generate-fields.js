@@ -30,6 +30,8 @@ fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
 });
 
 // Variables
+var picklistOptions = {};
+var picklistDefaults = require('./defaults/options.picklists.js');
 var indexHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
 	'var parentEnt = require(\'isight/entities/' + entityName + '\');\n\n' +
 	'module.exports = extend(parentEnt, ';
@@ -44,7 +46,6 @@ var indexFooter = {
 	rules: 'require(\'./rules.js\')',
 	validation: 'require(\'./validation.js\')'
 }
-var picklistOptions = {};
 var defaultCaseFields = [
 	{ field: 'openToClosedCalendarDays', type: 'number', caption: 'Open To Closed Calendar Days', kind: 'system' },
 	{ field: 'openToClosedBusinessDays', type: 'number', caption: 'Open To Closed Business Days', kind: 'system' },
@@ -80,7 +81,7 @@ function generateIndex(data) {
 	}
 
 	_.assign(index, indexFooter);
-	writeToFile('options.picklists.js', picklistOptions);
+	writeToFile('options.picklists.js', _.assign(picklistOptions, picklistDefaults));
 	return index;
 }
 
