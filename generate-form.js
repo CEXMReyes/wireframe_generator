@@ -72,8 +72,16 @@ function generateForm(listOfLists) {
 		var field = { field: _.camelCase(list[0]) }
 
 		if(list[1]) {
-			var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
-			addValidation(field.field, rule);
+			if(_.includes(list[1], '||')) {
+				var multiRules = _.map(list[2].split('||'), function(item) {
+					return generateRules(item);
+				});
+				var rule = multiRules.toString().replace(/,/g, ' || ');
+				addValidation(field.field, rule);
+			} else {
+				var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
+				addValidation(field.field, rule);
+			}
 		}
 		if(list[2]) {
 			if(_.includes(list[2], '||')) {
