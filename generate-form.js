@@ -4,10 +4,24 @@ var path = require('path');
 var pluralize = require('pluralize');
 var inDir = './input/';
 var outDir = './output/';
+var customDir = './custom-tabs/';
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
+var isTab = process.argv[3] === 'tab';
 
 
 // Run
+if(isTab) {
+	fs.readdir(customDir, function(err, files) {
+		if(err) console.error(err);
+		_.forEach(files, function(file) {
+			fs.readFile(path.join(customDir, file), 'utf8', function (err, data) {
+				if (err) console.error(err);
+				writeToFile(file.replace('tab-name', formName), replaceTabName(data));
+			});
+		});
+	});
+}
+
 fs.readFile(path.join(inDir, 'form.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	var input =  _.map(data.split('\n'), function (item) {
@@ -54,10 +68,11 @@ var partyTypeOptions = {
 function generateForm(listOfLists) {
 	if(_.includes(formName, 'case')) addValidation('closeReason', 'isClosed');
 	if(!_.includes(formName, 'case')) addValidation('caseId', '*');
-	var section = { type: 'section' };
+	var section;
 	var isSection = false;
 	var output = _.reduce(listOfLists, function (acc, list) {
 		if(list[0].toLowerCase() === '# section') {
+			section = { type: 'section' };
 			section.caption = _.snakeCase(list[1]);
 			section.elements = [];
 			isSection = true;
@@ -159,6 +174,19 @@ function formFormat(data) {
 		.replace(/"/g, "'");
 }
 
+function replaceTabName(data) {
+	var halfName = formName.replace(/case-/g, '');
+	return data
+	.replace(/tab-name/g, formName)
+	.replace(/tabName/g, _.camelCase(formName))
+	.replace(/tab_name/g, _.snakeCase(formName))
+	.replace(/TabName/g, _.upperFirst(_.camelCase(formName)))
+	.replace(/half-name/g, halfName)
+	.replace(/halfName/g, _.camelCase(halfName))
+	.replace(/half_name/g, _.snakeCase(halfName))
+	.replace(/HalfName/g, _.upperFirst(_.camelCase(halfName)));
+}
+
 function writeToFile(fileName, content) {
 	var file = fs.createWriteStream(path.join(outDir, fileName));
 	var output = 'module.exports = ';
@@ -168,8 +196,10 @@ function writeToFile(fileName, content) {
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
 		output += rulesFormat(content) + ';';
+	} else if(fileName == 'validation.js') {
+		output += formFormat(content) + ';';
 	} else {
-		output+= formFormat(content) + ';';
+		output = content;
 	}
 	file.write(output, 'utf8', function(err, data) {
 		if(err) console.error(err);
