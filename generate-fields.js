@@ -93,7 +93,7 @@ function generateFields(listOfLists) {
 		var field = {
 			field: _.camelCase(list[0]),
 			type: fieldtype,
-			caption: list[0].trim()
+			caption: list[0].trim().replace(/'/g, '\"')
 		}
 
 		if(_.includes(fieldtype, 'picklist')) {
