@@ -30,6 +30,8 @@ fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
 });
 
 // Variables
+var picklistOptions = {};
+var picklistDefaults = require('./defaults/options.picklists.js');
 var indexHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
 	'var parentEnt = require(\'isight/entities/' + entityName + '\');\n\n' +
 	'module.exports = extend(parentEnt, ';
@@ -44,7 +46,6 @@ var indexFooter = {
 	rules: 'require(\'./rules.js\')',
 	validation: 'require(\'./validation.js\')'
 }
-var picklistOptions = {};
 var defaultCaseFields = [
 	{ field: 'openToClosedCalendarDays', type: 'number', caption: 'Open To Closed Calendar Days', kind: 'system' },
 	{ field: 'openToClosedBusinessDays', type: 'number', caption: 'Open To Closed Business Days', kind: 'system' },
@@ -80,22 +81,23 @@ function generateIndex(data) {
 	}
 
 	_.assign(index, indexFooter);
-	writeToFile('options.picklists.js', picklistOptions);
+	writeToFile('options.picklists.js', _.assign(picklistOptions, picklistDefaults));
 	return index;
 }
 
 function generateFields(listOfLists) {
 	return _.map(listOfLists, function (list) {
 		var fieldtype = correctTypeName(list[1]);
+		if(!fieldtype) throw 'input contains an invalid type';
 
 		var field = {
 			field: _.camelCase(list[0]),
 			type: fieldtype,
-			caption: list[0].trim()
+			caption: list[0].trim().replace(/'/g, '\"')
 		}
 
 		if(_.includes(fieldtype, 'picklist')) {
-			var picklistName = _.snakeCase(pluralize(list[0]));
+			var picklistName = _.snakeCase(pluralize(list[0].trim()));
 			field.typeOptions = { picklistName: picklistName };
 			if(list[2]) writeToFile(picklistName + '.json', generatePicklist(picklistName, list[2]));
 			addOptions(picklistName);
@@ -113,13 +115,14 @@ function generateFields(listOfLists) {
 }
 
 function correctTypeName(type) {
-	if(_.includes(type.toLowerCase(), 'drop')) return 'picklist';
-	if(_.includes(type.toLowerCase(), 'multi')) return 'picklist[]';
-	if(_.includes(type.toLowerCase(), 'date')) return 'date';
-	if(_.includes(type.toLowerCase(), 'radio')) return 'radio';
-	if(_.includes(type.toLowerCase(), 'box')) return 'textbox';
-	if(_.includes(type.toLowerCase(), 'editor')) return 'texteditor';
-	if(_.includes(type.toLowerCase(), 'area')) return 'texteditor';
+	type = type.toLowerCase().trim();
+	if(_.includes(type, 'drop') || type === 'picklist') return 'picklist';
+	if(_.includes(type, 'multi') || type === 'picklist[]') return 'picklist[]';
+	if(_.includes(type, 'editor') || _.includes(type, 'area')) return 'texteditor';
+	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
+	if(_.includes(type, 'date')) return 'date';
+	if(_.includes(type, 'radio')) return 'radio';
+	if(_.includes(type, 'user')) return 'user';
 }
 
 function generatePicklist(listName, list) {

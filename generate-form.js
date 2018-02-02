@@ -4,10 +4,24 @@ var path = require('path');
 var pluralize = require('pluralize');
 var inDir = './input/';
 var outDir = './output/';
+var customDir = './custom-tabs/';
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
+var isTab = process.argv[3] === 'tab';
 
 
 // Run
+if(isTab) {
+	fs.readdir(customDir, function(err, files) {
+		if(err) console.error(err);
+		_.forEach(files, function(file) {
+			fs.readFile(path.join(customDir, file), 'utf8', function (err, data) {
+				if (err) console.error(err);
+				writeToFile(file.replace('tab-name', formName), replaceTabName(data));
+			});
+		});
+	});
+}
+
 fs.readFile(path.join(inDir, 'form.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	var input =  _.map(data.split('\n'), function (item) {
@@ -40,7 +54,6 @@ var caseResolutionFooter = [
 		{ field: 'closeReason', readOnly: true, displayRule: 'isClosed' },
 		{ field: 'reopenReason', readOnly: true, displayRule: 'wasReopened' }
 ];
-var closeMandatory = { condition: 'isClosed', fields: ['closeReason'] };
 var childHeader = [
 	{
 		field: 'caseId',
@@ -53,17 +66,38 @@ var partyTypeOptions = {
 
 // Functions
 function generateForm(listOfLists) {
+	if(_.includes(formName, 'case')) addValidation('closeReason', 'isClosed');
 	if(!_.includes(formName, 'case')) addValidation('caseId', '*');
-	var output = _.map(listOfLists, function (list) {
-		var field = {
-			field: _.camelCase(list[0]),
+	var section;
+	var isSection = false;
+	var output = _.reduce(listOfLists, function (acc, list) {
+		if(list[0].toLowerCase() === '# section') {
+			section = { type: 'section' };
+			section.caption = _.snakeCase(list[1]);
+			section.elements = [];
+			isSection = true;
+			return acc;
 		}
+		if(list[0].toLowerCase() === '# end') {
+			isSection = false;
+			acc.push(section);
+			return acc;
+		}
+
+		var field = { field: _.camelCase(list[0]) }
 
 		if(list[1]) {
-			var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
-			addValidation(field.field, rule);
+			if(_.includes(list[1], '||')) {
+				var multiRules = _.map(list[2].split('||'), function(item) {
+					return generateRules(item);
+				});
+				var rule = multiRules.toString().replace(/,/g, ' || ');
+				addValidation(field.field, rule);
+			} else {
+				var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
+				addValidation(field.field, rule);
+			}
 		}
-
 		if(list[2]) {
 			if(_.includes(list[2], '||')) {
 				var multiRules = _.map(list[2].split('||'), function(item) {
@@ -74,9 +108,14 @@ function generateForm(listOfLists) {
 				field.displayRule = generateRules(list[2]);
 			}
 		}
+		if(isSection) {
+			section.elements.push(field);
+		} else {
+			acc.push(field);
+		}
 
-		return field;
-	});
+		return acc;
+	}, []);
 
 	if(formName === 'case-overview') {
 		output = caseOverviewHeader.concat(output);
@@ -135,6 +174,19 @@ function formFormat(data) {
 		.replace(/"/g, "'");
 }
 
+function replaceTabName(data) {
+	var halfName = formName.replace(/case-/g, '');
+	return data
+	.replace(/tab-name/g, formName)
+	.replace(/tabName/g, _.camelCase(formName))
+	.replace(/tab_name/g, _.snakeCase(formName))
+	.replace(/TabName/g, _.upperFirst(_.camelCase(formName)))
+	.replace(/half-name/g, halfName)
+	.replace(/halfName/g, _.camelCase(halfName))
+	.replace(/half_name/g, _.snakeCase(halfName))
+	.replace(/HalfName/g, _.upperFirst(_.camelCase(halfName)));
+}
+
 function writeToFile(fileName, content) {
 	var file = fs.createWriteStream(path.join(outDir, fileName));
 	var output = 'module.exports = ';
@@ -144,8 +196,10 @@ function writeToFile(fileName, content) {
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
 		output += rulesFormat(content) + ';';
+	} else if(fileName == 'validation.js') {
+		output += formFormat(content) + ';';
 	} else {
-		output+= formFormat(content) + ';';
+		output = content;
 	}
 	file.write(output, 'utf8', function(err, data) {
 		if(err) console.error(err);

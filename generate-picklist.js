@@ -17,7 +17,7 @@ fs.readFile(path.join(inDir, 'picklists.txt'), 'utf8', function(err, data) {
 
 // Functions
 function generatePickLists(listOfLists) {
-	var listName = _.snakeCase(pluralize(listOfLists[0][listOfLists[0].length - 1]));
+	var listName = _.snakeCase(pluralize(listOfLists[0][listOfLists[0].length - 1].trim()));
 	var hasParent = listOfLists[0].length > 1;
 	var nextList = hasParent ? [listOfLists[0].slice(0, listOfLists[0].length -1)] : [];
 
@@ -25,7 +25,7 @@ function generatePickLists(listOfLists) {
 		var nextItem = list;
 		if(listOfLists[0].length === list.length) {
 			nextItem = list.slice(0, list.length - 1);
-			var listOfItems = list[list.length - 1].split(',');
+			var listOfItems = hasParent ? list[list.length - 1].split(',') : [list[list.length - 1]];
 
 			_.forEach(listOfItems, function(item) {
 				var listItem = {
@@ -51,7 +51,7 @@ function generatePickLists(listOfLists) {
 
 function generateOptions(options) {
 	var listNames = _.map(options, function(item) {
-		return _.snakeCase(pluralize(item));
+		return _.snakeCase(pluralize(item.trim()));
 	});
 
 	var output = _.reduce(listNames, function(acc, item, key) {
@@ -77,7 +77,7 @@ function shouldStoreNext(collection, nextItem) {
 function arrayEquals(a, b) {
 	if(a.length !== b.length) return false;
 	return _.every(a, function(value, key) {
-		return value === b[key];
+		return value.trim() === b[key].trim();
 	});
 }
 
