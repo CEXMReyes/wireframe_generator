@@ -120,9 +120,11 @@ function correctTypeName(type) {
 	if(_.includes(type, 'multi') || type === 'picklist[]') return 'picklist[]';
 	if(_.includes(type, 'editor') || _.includes(type, 'area')) return 'texteditor';
 	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
+	if(_.includes(type, 'date') && _.includes(type, 'time')) return 'datetime';
 	if(_.includes(type, 'date')) return 'date';
 	if(_.includes(type, 'radio')) return 'radio';
 	if(_.includes(type, 'user')) return 'user';
+	if(_.includes(type, 'phone')) return 'phoneNumber';
 }
 
 function generatePicklist(listName, list) {
