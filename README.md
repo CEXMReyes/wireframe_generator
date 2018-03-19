@@ -9,7 +9,7 @@ A collection of scripts to generate 3.x wireframing files. A proper UI will come
 Make sure to install all packages in the package.json.
 
 
-Create a folder called **output**, this is where the generated files will be stored.
+Make sure a folder named **output** exists in the root directory, this is where the generated files will be stored.
 
 ### Installing
 
@@ -63,6 +63,8 @@ Script will default to creating a case-capture form. In order to specify otherwi
   * **rules.js**
   * **validation.js**
 
+Supports creation of sections, using **###** as a flag dentote the start of the section and **##** to denote the end.
+
 Paste input in the **form.txt** file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 
 Field Name | Type | TypeOptions (Picklists, Radios)
@@ -70,9 +72,11 @@ Field Name | Type | TypeOptions (Picklists, Radios)
 Counsel Name | Legal Involved = Yes | Legal Involved = Yes
 Assistance Program | Case Type = Alcohol/Drugs OR Substance Abuse | Case Type = Alcohol/Drugs OR Substance Abuse
 Date Amber Alert Filed | Amber Alert Filed = Yes | Amber Alert Filed = Yes
+### Section Name | |
 Alcohol Involved | Case Type = Assault | Case Type = Assault
 Drugs Involved | Case Type = Assault | Case Type = Assault
 Union Involved | Sub Case Type = Union | Case Type = Grievance &#124;&#124; Sub Case Type = Union
+## <End of Section> | |
 Grievance Type |  | Case Type = Grievance &#124;&#124; Sub Case Type = Union
 Other Grievance Type  | Grievance Type = Other | Grievance Type = Other
 

@@ -71,14 +71,14 @@ function generateForm(listOfLists) {
 	var section;
 	var isSection = false;
 	var output = _.reduce(listOfLists, function (acc, list) {
-		if(list[0].toLowerCase() === '# section') {
+		if(_.includes(list[0], '###')) {
 			section = { type: 'section' };
-			section.caption = _.snakeCase(list[1]);
+			section.caption = _.snakeCase(_.split(list[0], '###'));
 			section.elements = [];
 			isSection = true;
 			return acc;
 		}
-		if(list[0].toLowerCase() === '# end') {
+		if(_.includes(list[0], '##')) {
 			isSection = false;
 			acc.push(section);
 			return acc;
