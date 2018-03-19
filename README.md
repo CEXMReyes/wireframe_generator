@@ -72,11 +72,9 @@ Field Name | Type | TypeOptions (Picklists, Radios)
 Counsel Name | Legal Involved = Yes | Legal Involved = Yes
 Assistance Program | Case Type = Alcohol/Drugs OR Substance Abuse | Case Type = Alcohol/Drugs OR Substance Abuse
 Date Amber Alert Filed | Amber Alert Filed = Yes | Amber Alert Filed = Yes
-### Section Name | |
 Alcohol Involved | Case Type = Assault | Case Type = Assault
 Drugs Involved | Case Type = Assault | Case Type = Assault
 Union Involved | Sub Case Type = Union | Case Type = Grievance &#124;&#124; Sub Case Type = Union
-## <End of Section> | |
 Grievance Type |  | Case Type = Grievance &#124;&#124; Sub Case Type = Union
 Other Grievance Type  | Grievance Type = Other | Grievance Type = Other
 
