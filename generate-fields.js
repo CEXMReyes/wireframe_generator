@@ -88,7 +88,7 @@ function generateIndex(data) {
 function generateFields(listOfLists) {
 	return _.map(listOfLists, function (list) {
 		var fieldtype = correctTypeName(list[1]);
-		if(!fieldtype) throw 'input contains an invalid type';
+		if(!fieldtype) throw 'input contains an invalid type: ' + list[1];
 
 		var field = {
 			field: _.camelCase(list[0]),
@@ -125,6 +125,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'radio')) return 'radio';
 	if(_.includes(type, 'user')) return 'user';
 	if(_.includes(type, 'phone')) return 'phoneNumber';
+	if(_.includes(type, 'number')) return 'number';
 }
 
 function generatePicklist(listName, list) {
