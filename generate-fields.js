@@ -98,8 +98,11 @@ function generateFields(listOfLists) {
 
 		if(_.includes(fieldtype, 'picklist')) {
 			var picklistName = _.snakeCase(pluralize(list[0].trim()));
+			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
+				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
+			}).join(',');
 			field.typeOptions = { picklistName: picklistName };
-			if(list[2]) writeToFile(picklistName + '.json', generatePicklist(picklistName, list[2]));
+			writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData));
 			addOptions(picklistName);
 		} else if(fieldtype === 'radio') {
 			if(list[2] && !isYesNo(list[2])) {
@@ -123,6 +126,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'date') && _.includes(type, 'time')) return 'datetime';
 	if(_.includes(type, 'date')) return 'date';
 	if(_.includes(type, 'radio')) return 'radio';
+	if(_.includes(type, 'check')) return 'checkbox';
 	if(_.includes(type, 'user')) return 'user';
 	if(_.includes(type, 'phone')) return 'phoneNumber';
 	if(_.includes(type, 'number')) return 'number';
