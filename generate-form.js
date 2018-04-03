@@ -88,7 +88,7 @@ function generateForm(listOfLists) {
 
 		if(list[1]) {
 			if(_.includes(list[1], '||')) {
-				var multiRules = _.map(list[2].split('||'), function(item) {
+				var multiRules = _.map(list[1].split('||'), function(item) {
 					return generateRules(item);
 				});
 				var rule = multiRules.toString().replace(/,/g, ' || ');
