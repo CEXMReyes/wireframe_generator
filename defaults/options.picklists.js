@@ -1,5 +1,9 @@
 module.exports = {
 	// Custom
+	'resolutions': {
+		text: 'value',
+		value: 'value'
+	},
 	'email_templates': {
 		parents: ['languages'],
 		parentAttributes: ['locale'],

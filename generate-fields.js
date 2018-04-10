@@ -30,38 +30,10 @@ fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
 });
 
 // Variables
-var picklistOptions = {};
+var fieldsDefaults = _.cloneDeep(require('./defaults/fields-defaults.js'));
 var picklistDefaults = require('./defaults/options.picklists.js');
-var indexHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
-	'var parentEnt = require(\'isight/entities/' + entityName + '\');\n\n' +
-	'module.exports = extend(parentEnt, ';
-var customHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
-	'var standardChildConfig = require(\'isight/entities/standard-child-config.js\');\n\n' +
-	'module.exports = extend(standardChildConfig, ';
-var modelHeader = 'var BBModel = require(\'isight/public/lib/backbone-model.js\');\n\n' +
-	'module.exports = BBModel.extend(';
-var indexFooter = {
-	acl: 'require(\'./acl.js\')',
-	grids: 'require(\'./grids.js\')',
-	rules: 'require(\'./rules.js\')',
-	validation: 'require(\'./validation.js\')'
-}
-var defaultCaseFields = [
-	{ field: 'openToClosedCalendarDays', type: 'number', caption: 'Open To Closed Calendar Days', kind: 'system' },
-	{ field: 'openToClosedBusinessDays', type: 'number', caption: 'Open To Closed Business Days', kind: 'system' },
-	{ field: 'dataSource', type: 'textbox', kind: 'hidden' }
-];
-var defaultCustomOptions = {
-	db: 'default',
-	table: 'sys_' + entityName,
-	entity: { base: 'sys', name: entityName },
-	caption: _.startCase(entityName),
-	captionPlural: pluralize(_.startCase(entityName)),
-	addCaption: 'Add ' + _.startCase(entityName),
-	newCaption: 'New ' + _.startCase(entityName),
-	search: true,
-	api: { useGenericApi: true }
-}
+var indexHeader = fieldsDefaults.indexHeader(entityName);
+var picklistOptions = {};
 
 // Functions
 function generateIndex(data) {
@@ -69,18 +41,21 @@ function generateIndex(data) {
 	var index;
 
 	if(isCustom) {
-		indexHeader = customHeader;
-		index = defaultCustomOptions;
+		indexHeader = fieldsDefaults.customHeader;
+		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
 		writeToFile('sys_' + entityName + '.js', generateCustomController());
 		writeToFile(entityName + '-model.js', generateModel());
 		writeToFile('grids.js', generateGrids());
 	} else {
-		if(entityName === 'case') fields = _.concat(defaultCaseFields, fields);
+		if(entityName === 'case') {
+			fields = _.concat(fieldsDefaults.defaultCaseFields, fields,
+				fieldsDefaults.defaultResolutionFields);
+		};
 		index = { fields: fields };
 	}
 
-	_.assign(index, indexFooter);
+	_.assign(index, fieldsDefaults.indexFooter);
 	writeToFile('options.picklists.js', _.assign(picklistOptions, picklistDefaults));
 	return index;
 }
@@ -94,7 +69,7 @@ function generateFields(listOfLists) {
 			field: _.camelCase(list[0]),
 			type: fieldtype,
 			caption: list[0].trim().replace(/'/g, '\"')
-		}
+		};
 
 		if(_.includes(fieldtype, 'picklist')) {
 			var picklistName = _.snakeCase(pluralize(list[0].trim()));
@@ -162,7 +137,7 @@ function generateCustomController() {
 		model: entityName + '-model.js',
 		gridName: 'main-' + entityName,
 		caseGridName: 'case-' + entityName
-	}
+	};
 }
 
 function generateGrids() {
@@ -182,7 +157,7 @@ function generateGrids() {
 			{ field: 'number' },
 			{ field: 'createdDate' }
 		]
-	}
+	};
 	return gridObj;
 }
 
@@ -194,14 +169,14 @@ function generateModel() {
 			name: entityName
 		},
 		idAttribute: 'id'
-	}
+	};
 }
 
 function addOptions(option) {
 	picklistOptions[option] = {
 		text: 'value',
 		value: 'value'
-	}
+	};
 }
 
 function isYesNo(radios) {
@@ -232,14 +207,14 @@ function optionsFormat(data) {
 function moduleFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/\"([^(\")"]+)\":/g,"$1:")
-		.replace(/"/g, "'")
+		.replace(/"/g, "'");
 }
 
 function modelFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/\"([^(\")"]+)\":/g,"$1:")
 		.replace(/"/g, "'")
-		.replace(/urlRoot: \'([^(\")"]+)\'\',/,"urlRoot: $1',")
+		.replace(/urlRoot: \'([^(\")"]+)\'\',/,"urlRoot: $1',");
 }
 
 function replaceEntityName(data) {
@@ -268,7 +243,7 @@ function writeToFile(fileName, content) {
 	} else if(_.includes(fileName, 'sys_')) {
 		output = 'module.exports = ' + moduleFormat(content) + ';';
 	} else if(_.includes(fileName, 'model.js')) {
-		output = modelHeader + modelFormat(content) + ');';
+		output = fieldsDefaults.modelHeader + modelFormat(content) + ');';
 	} else if(_.includes(fileName, '.json')) {
 		output = JSON.stringify(content, null, '\t');
 	} else {

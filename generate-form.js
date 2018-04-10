@@ -8,7 +8,6 @@ var customDir = './custom-tabs/';
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
 var isTab = process.argv[3] === 'tab';
 
-
 // Run
 if(isTab) {
 	fs.readdir(customDir, function(err, files) {
@@ -33,36 +32,9 @@ fs.readFile(path.join(inDir, 'form.txt'), 'utf8', function (err, data) {
 });
 
 // Variables
+var formDefaults = _.cloneDeep(require('./defaults/form-defaults.js'));
+var validation = { mandatory$: [], dependentMandatory$: [] };
 var rules = {};
-var validation = {
-	mandatory$: [],
-	dependentMandatory$: []
-};
-var caseCaptureFooter = [{
-	type: 'section',
-	caption: 'case_assignment',
-	elements: [
-		{ caption: 'assign_to', field: 'owner' },
-		{ field: 'investigativeTeamMembers' }
-	]
-}];
-var caseOverviewHeader = [
-	{ field: 'dateAssigned', readOnly: true },
-	{ field: 'reopenDate', readOnly: true, displayRule: 'wasReopened' }
-];
-var caseResolutionFooter = [
-		{ field: 'closeReason', readOnly: true, displayRule: 'isClosed' },
-		{ field: 'reopenReason', readOnly: true, displayRule: 'wasReopened' }
-];
-var childHeader = [
-	{
-		field: 'caseId',
-		editRule: 'isNew && !isAddingToSpecificCase'
-	}
-];
-var partyTypeOptions = {
-	requiredRoleForClosedCases: 'closed_case_add_party'
-};
 
 // Functions
 function generateForm(listOfLists) {
@@ -84,23 +56,25 @@ function generateForm(listOfLists) {
 			return acc;
 		}
 
-		var field = { field: _.camelCase(list[0]) }
+		var field = { field: _.camelCase(list[0]) };
+		var rule = '';
+		var multiRules = [];
 
 		if(list[1]) {
 			if(_.includes(list[1], '||')) {
-				var multiRules = _.map(list[1].split('||'), function(item) {
+				multiRules = _.map(list[1].split('||'), function(item) {
 					return generateRules(item);
 				});
-				var rule = multiRules.toString().replace(/,/g, ' || ');
+				rule = multiRules.toString().replace(/,/g, ' || ');
 				addValidation(field.field, rule);
 			} else {
-				var rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
+				rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
 				addValidation(field.field, rule);
 			}
 		}
 		if(list[2]) {
 			if(_.includes(list[2], '||')) {
-				var multiRules = _.map(list[2].split('||'), function(item) {
+				multiRules = _.map(list[2].split('||'), function(item) {
 					return generateRules(item);
 				});
 				field.displayRule = multiRules.toString().replace(/,/g, ' || ');
@@ -118,10 +92,10 @@ function generateForm(listOfLists) {
 	}, []);
 
 	if(formName === 'case-overview') {
-		output = caseOverviewHeader.concat(output);
+		output = formDefaults.caseOverviewHeader.concat(output);
 	} else if(!_.includes(formName, 'case')) {
-		output = childHeader.concat(output);
-		if(formName === 'party-details') output[0].typeOptions = partyTypeOptions;
+		output = formDefaults.childHeader.concat(output);
+		if(formName === 'party-details') output[0].typeOptions = formDefaults.partyTypeOptions;
 	}
 	return { elements: output };
 }
@@ -191,8 +165,8 @@ function writeToFile(fileName, content) {
 	var file = fs.createWriteStream(path.join(outDir, fileName));
 	var output = 'module.exports = ';
 	if(_.includes(fileName, 'form.js')) {
-		if(formName === 'case-capture') content.elements = content.elements.concat(caseCaptureFooter);
-		if(formName === 'case-resolution') content.elements = content.elements.concat(caseResolutionFooter);
+		if(formName === 'case-capture') content.elements = content.elements.concat(formDefaults.caseCaptureFooter);
+		if(formName === 'case-resolution') content.elements = content.elements.concat(formDefaults.caseResolutionFooter);
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
 		output += rulesFormat(content) + ';';
