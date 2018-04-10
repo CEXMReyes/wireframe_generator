@@ -72,7 +72,9 @@ function generateFields(listOfLists) {
 		};
 
 		if(_.includes(fieldtype, 'picklist')) {
-			var picklistName = _.snakeCase(pluralize(list[0].trim()));
+			var term = list[0].trim();
+			var picklistName = _.snakeCase(term) === 'actions_taken' ?
+				_.snakeCase(term) : _.snakeCase(pluralize(term));
 			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
 				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
 			}).join(',');
