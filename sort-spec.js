@@ -3,13 +3,16 @@ var fs = require('fs');
 var path = require('path');
 var Papa = require('papaparse');
 var inDir = './input';
+var run = process.argv[2] === 'run';
 
 fs.readFile(path.join(inDir, 'spec.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	sortColumns(data);
-	// Uncomment the following 2 lines run scripts immediately
-	// require('./generate-fields.js');
-	// require('./generate-form.js');
+
+	if(run) {
+		require('./generate-fields.js');
+		require('./generate-form.js');
+	}
 });
 
 function sortColumns(data) {
