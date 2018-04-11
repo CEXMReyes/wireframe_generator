@@ -10,9 +10,13 @@ fs.readFile(path.join(inDir, 'spec.txt'), 'utf8', function (err, data) {
 	sortColumns(data);
 
 	if(run) {
-		process.argv[2] = null;
+		var formType = process.argv[3] || null;
+		var entityType = formType ? (formType.split('-'))[0] : null;
+
+		process.argv[2] = entityType;
 		process.argv[3] = null;
 		require('./generate-fields.js');
+		process.argv[2] = formType;
 		require('./generate-form.js');
 	}
 });
