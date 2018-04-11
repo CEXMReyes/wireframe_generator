@@ -55,7 +55,7 @@ function generateIndex(data) {
 		index = { fields: fields };
 	}
 
-	_.assign(index, fieldsDefaults.indexFooter);
+	_.defaults(index, fieldsDefaults.indexFooter);
 	writeToFile('options.picklists.js', _.defaults(picklistOptions, picklistDefaults));
 	return index;
 }
