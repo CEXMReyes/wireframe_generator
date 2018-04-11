@@ -8,8 +8,8 @@ fs.readFile(path.join(inDir, 'spec.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	sortColumns(data);
 	// Uncomment the following 2 lines run scripts immediately
-	require('./generate-fields.js');
-	require('./generate-form.js');
+	// require('./generate-fields.js');
+	// require('./generate-form.js');
 });
 
 function sortColumns(data) {
