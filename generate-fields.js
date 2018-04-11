@@ -75,12 +75,25 @@ function generateFields(listOfLists) {
 			var term = list[0].trim();
 			var picklistName = _.snakeCase(term) === 'actions_taken' ?
 				_.snakeCase(term) : _.snakeCase(pluralize(term));
+			var picklistDependencies;
+
+			if(list[2] && list[2].charAt(0) === '#') {
+				picklistDependencies = list[2].slice(1).split(',');
+				picklistDependencies = _.map(picklistDependencies, function(item) {
+					return _.camelCase(item);
+				});
+				list[2] = null;
+			}
+
 			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
 				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
 			}).join(',');
+
 			field.typeOptions = { picklistName: picklistName };
+			if(picklistDependencies) field.typeOptions['picklistDependencies'] = picklistDependencies;
+
 			writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData));
-			addOptions(picklistName);
+			addOptions(picklistName, picklistDependencies);
 		} else if(fieldtype === 'radio') {
 			if(list[2] && !isYesNo(list[2])) {
 				field.typeOptions = generateRadios(list[2]);
@@ -174,10 +187,17 @@ function generateModel() {
 	};
 }
 
-function addOptions(option) {
+function addOptions(option, parents) {
+	if(parents) {
+		parents = _.map(parents, function(item) {
+			return _.snakeCase(pluralize(_.startCase(item)));
+		});
+	}
+
 	picklistOptions[option] = {
 		text: 'value',
-		value: 'value'
+		value: 'value',
+		parents: parents
 	};
 }
 

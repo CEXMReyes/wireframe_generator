@@ -1,0 +1,35 @@
+Department	Dropdown	*
+Case Type	Dropdown	*		# Department
+Sub Case Type	Dropdown			# Department, Case Type
+Initial Contact Date	Date Picker	*
+Incident Date	Date Picker	*
+Incident Location	Dropdown
+Reporting Channel	Multipick	*		Email, Phone, Web Form, In Person, Social Media, Other
+Urgency	Dropdown	*		Low, Medium, High
+Primary Basis of Discrimination	Dropdown		Department = Title IX	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Secondary Basis of Discrimination	Dropdown		Department = Title IX	Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Clery Report Filed?	Radio Button		Department = Title IX	Yes, No
+Complainant Type	Dropdown	Department = Complaints	Department = Complaints	Staff, Faculty, Security, Student, Alumni, Visitor, Vendor/Contractor, Other
+Vehicle Type	Dropdown	Case Type = Vehicle Accident	Case Type = Vehicle Accident	Car, Truck, Bus, Shuttle, Motorcycle, Segway, Drone, Other
+OSHA Report Filed?	Radio Button	Department = Health & Safety	Department = Health & Safety	Yes, No
+Corrective Action Required?	Radio Button	Department = Health & Safety	Department = Health & Safety	Yes, No
+Leave Required?	Radio Button	Department = Health & Safety OR Case Type = Harassment	Department = Health & Safety OR Case Type = Harassment
+Leave Type	Dropdown	Case Type = Leaves Administration	Case Type = Leaves Administration	Medical, Military, Paternity, Personal, Maternity, Temporary Layoff, Disciplinary, Other
+Other Leave Type	Text Box	Leave Type = Other	Leave Type = Other
+Leave Start Date	Date Picker	Case Type = Leaves Administration	Case Type = Leaves Administration
+Expected Return Date	Date Picker	Case Type = Leaves Administration	Case Type = Leaves Administration
+Police Report Filed?	Radio Button	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Yes, No
+Reported To Campus Police?	Radio Button	Department = Security OR Title IX	Department = Security OR Title IX	Yes, No
+Legal Involved?	Radio Button	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Yes, No
+Counsel Name	Text Box	Legal Involved = Yes	Legal Involved = Yes
+Assistance Program	Radio Button	Case Type = Alcohol/Drugs OR Substance Abuse	Case Type = Alcohol/Drugs OR Substance Abuse	Yes, No
+Amber Alert Filed?	Radio Button	Case Type = Missing Child	Case Type = Missing Child	Yes, No
+Date Amber Alert Filed	Date/Time Picker	Amber Alert Filed = Yes	Amber Alert Filed = Yes
+Alcohol Involved	Radio Button	Case Type = Assault	Case Type = Assault	Yes, No, Unknown
+Drugs Involved	Radio Button	Case Type = Assault	Case Type = Assault	Yes, No, Unknown
+Union Involved	Dropdown	Sub Case Type = Union	Case Type = Grievance || Sub Case Type = Union	Union A, Union B, Union C
+Grievance Type	Dropdown		Case Type = Grievance || Sub Case Type = Union	Contract, Overtime, Workplace Conditions, Discrimination, Conflict, Other
+Other Grievance Type 	Text Box	Grievance Type = Other	Grievance Type = Other
+Interim Action	Dropdown		Case Type = Assault, Discrimination, Payroll, Threat, Policy Violation	Relocation
+Actions Taken	Dropdown			Remediate, Investigate, Referral to Resources, Inquiry Only, Referral to Other Department
+Case Details	Text Editor
