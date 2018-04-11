@@ -10,6 +10,8 @@ fs.readFile(path.join(inDir, 'spec.txt'), 'utf8', function (err, data) {
 	sortColumns(data);
 
 	if(run) {
+		process.argv[2] = null;
+		process.argv[3] = null;
 		require('./generate-fields.js');
 		require('./generate-form.js');
 	}
