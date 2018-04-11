@@ -85,14 +85,16 @@ function generateFields(listOfLists) {
 				list[2] = null;
 			}
 
-			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
-				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
-			}).join(',');
+			// Uncomment to generate blank picklists
+			// var picklistData = list[2] || _.map(new Array(3), function(item, key) {
+			// 	return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
+			// }).join(',');
+			var picklistData = list[2];
 
 			field.typeOptions = { picklistName: picklistName };
 			if(picklistDependencies) field.typeOptions['picklistDependencies'] = picklistDependencies;
 
-			writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData));
+			if(picklistData) writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData));
 			addOptions(picklistName, picklistDependencies);
 		} else if(fieldtype === 'radio') {
 			if(list[2] && !isYesNo(list[2])) {
