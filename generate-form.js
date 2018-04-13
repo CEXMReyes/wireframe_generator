@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var pluralize = require('pluralize');
 var inDir = './input/';
 var outDir = './output/';
 var customDir = './custom-tabs/';

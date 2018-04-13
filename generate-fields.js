@@ -74,7 +74,7 @@ function generateFields(listOfLists) {
 		if(_.includes(fieldtype, 'picklist')) {
 			var term = list[0].trim();
 			var picklistName = _.snakeCase(term) === 'actions_taken' ?
-				_.snakeCase(term) : _.snakeCase(pluralize(term));
+				_.snakeCase(term) : pluralize(_.snakeCase(term));
 			var picklistDependencies;
 
 			if(list[2] && list[2].charAt(0) === '#') {
@@ -192,7 +192,7 @@ function generateModel() {
 function addOptions(option, parents) {
 	if(parents) {
 		parents = _.map(parents, function(item) {
-			return _.snakeCase(pluralize(_.startCase(item)));
+			return pluralize(_.snakeCase(item));
 		});
 	}
 
