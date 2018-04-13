@@ -170,7 +170,8 @@ function writeToFile(fileName, content) {
 		if(formName === 'case-resolution') content.elements = content.elements.concat(formDefaults.caseResolutionFooter);
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
-		output += rulesFormat(_.defaults(content, formDefaults.caseRulesDefaults)) + ';';
+		if(_.includes(formName, 'case')) content = _.defaults(content, formDefaults.caseRulesDefaults);
+		output += rulesFormat(content) + ';';
 	} else if(fileName == 'validation.js') {
 		output += formFormat(content) + ';';
 	} else {
