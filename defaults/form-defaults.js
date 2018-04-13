@@ -21,6 +21,9 @@ module.exports = {
 		{ field: 'closeReason', readOnly: true, displayRule: 'isClosed' },
 		{ field: 'reopenReason', readOnly: true, displayRule: 'wasReopened' }
 	],
+	caseRulesDefaults: {
+		wasReopened: { function_header_truthy: 'reopenDate && data.caseStatus === \'open\';' }
+	},
 	childHeader: [
 		{
 			field: 'caseId',

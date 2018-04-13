@@ -45,7 +45,7 @@ function generateForm(listOfLists) {
 	var output = _.reduce(listOfLists, function (acc, list) {
 		if(_.includes(list[0], '###')) {
 			section = { type: 'section' };
-			section.caption = _.snakeCase(_.split(list[0], '###'));
+			section.caption = _.snakeCase(list[0].split('###'));
 			section.elements = [];
 			isSection = true;
 			return acc;
@@ -137,6 +137,7 @@ function addValidation(childField, displayRule) {
 function rulesFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/: {/g, ": function (data) {")
+		.replace(/function_header_truthy/g, "return !!data.")
 		.replace(/function_header/g, "return data.")
 		.replace(/"/g, "")
 		.replace(/data.: /g, "data.");
@@ -169,7 +170,7 @@ function writeToFile(fileName, content) {
 		if(formName === 'case-resolution') content.elements = content.elements.concat(formDefaults.caseResolutionFooter);
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
-		output += rulesFormat(content) + ';';
+		output += rulesFormat(_.defaults(content, formDefaults.caseRulesDefaults)) + ';';
 	} else if(fileName == 'validation.js') {
 		output += formFormat(content) + ';';
 	} else {
