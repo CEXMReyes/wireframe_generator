@@ -276,15 +276,13 @@ function capitalize(data) {
 }
 
 function writeToFile(fileName, content, filepath) {
-	var baseDir = projDir;
-	if(!pathOn) {
-		baseDir = outDir;
-	}
-	createFolderPath(filepath);
+	var baseDir = pathOn ? projDir : outDir;
+	createFolderPath(filepath, baseDir);
 
-	var file
-	if(!entityName === 'case' && fileName === 'options.picklists.js') {
-		file = fs.createWriteStream(path.join(outDir, filepath, fileName));
+	var file;
+	console.log(entityName, fileName);
+	if(entityName !== 'case' && fileName === 'options.picklists.js') {
+		file = fs.createWriteStream(path.join(outDir, fileName));
 	} else {
 		file = fs.createWriteStream(path.join(baseDir, filepath, fileName));
 	}
@@ -309,7 +307,7 @@ function writeToFile(fileName, content, filepath) {
 	});
 }
 
-function createFolderPath(targetPath) {
+function createFolderPath(targetPath, baseDir) {
 	var folders = _.filter(targetPath.split(path.sep), function(item) {
 		return !_.includes(item, '.');
 	});
@@ -318,5 +316,5 @@ function createFolderPath(targetPath) {
 		newPath = path.join(newPath, item);
 		if(!fs.existsSync(newPath)) { fs.mkdirSync(newPath); }
 		return newPath;
-	}, outDir);
+	}, baseDir);
 }
