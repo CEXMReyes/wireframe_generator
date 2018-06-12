@@ -3,12 +3,12 @@ var fs = require('fs');
 var path = require('path');
 var inDir = './input/';
 var outDir = './output/';
-// var outDir = '/Users/mreyes/git/config_montana_v5';
+var projDir = '/Users/mreyes/git/config_montana_v5';
 var customDir = './custom-tabs/';
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
 var entityName = (_.split(formName, '-'))[0];
 var isTab = process.argv[3] === 'tab';
-var pathOn = true;
+var pathOn = false;
 
 // Run
 if(isTab) {
@@ -165,10 +165,14 @@ function replaceTabName(data) {
 }
 
 function writeToFile(fileName, content, filepath) {
-	if(!pathOn) filepath = null;
-	filepath = filepath || '.';
+	var baseDir = projDir;
+	if(!pathOn) {
+		baseDir = outDir;
+	}
 	createFolderPath(filepath);
-	var file = fs.createWriteStream(path.join(outDir, filepath, fileName));
+
+	var file = fs.createWriteStream(path.join(baseDir, filepath, fileName));
+
 	var output = 'module.exports = ';
 	if(_.includes(fileName, 'form.js')) {
 		if(formName === 'case-capture') content.elements = content.elements.concat(formDefaults.caseCaptureFooter);

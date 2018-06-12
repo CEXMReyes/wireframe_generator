@@ -5,11 +5,11 @@ var pluralize = require('pluralize');
 var defDir = './defaults';
 var inDir = './input/';
 var outDir = './output/';
-// var outDir = '/Users/mreyes/git/config_montana_v5';
+var projDir = '/Users/mreyes/git/config_montana_v5';
 var customDir = './custom-forms/';
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
-var pathOn = true;
+var pathOn = false;
 
 // Run
 if(isCustom) {
@@ -276,10 +276,19 @@ function capitalize(data) {
 }
 
 function writeToFile(fileName, content, filepath) {
-	if(!pathOn) filepath = null;
-	filepath = filepath || '.';
+	var baseDir = projDir;
+	if(!pathOn) {
+		baseDir = outDir;
+	}
 	createFolderPath(filepath);
-	var file = fs.createWriteStream(path.join(outDir, filepath, fileName));
+
+	var file
+	if(!entityName === 'case' && fileName === 'options.picklists.js') {
+		file = fs.createWriteStream(path.join(outDir, filepath, fileName));
+	} else {
+		file = fs.createWriteStream(path.join(baseDir, filepath, fileName));
+	}
+
 	var output;
 	if(fileName === 'index.js') {
 		output = indexHeader + indexFormat(content) + ');';
