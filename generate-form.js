@@ -3,9 +3,12 @@ var fs = require('fs');
 var path = require('path');
 var inDir = './input/';
 var outDir = './output/';
+// var outDir = '/Users/mreyes/git/config_montana_v5';
 var customDir = './custom-tabs/';
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
+var entityName = (_.split(formName, '-'))[0];
 var isTab = process.argv[3] === 'tab';
+var pathOn = true;
 
 // Run
 if(isTab) {
@@ -25,9 +28,9 @@ fs.readFile(path.join(inDir, 'form.txt'), 'utf8', function (err, data) {
 	var input =  _.map(data.split('\n'), function (item) {
 		return item.split('\t');
 	});
-	writeToFile(formName + '-form.js', generateForm(input));
-	writeToFile('rules.js', rules);
-	writeToFile('validation.js', validation);
+	writeToFile(formName + '-form.js', generateForm(input), path.join('config', 'form-layouts'));
+	writeToFile('rules.js', rules, path.join('entities', entityName));
+	writeToFile('validation.js', validation, path.join('entities', entityName));
 });
 
 // Variables
@@ -161,8 +164,11 @@ function replaceTabName(data) {
 	.replace(/HalfName/g, _.upperFirst(_.camelCase(halfName)));
 }
 
-function writeToFile(fileName, content) {
-	var file = fs.createWriteStream(path.join(outDir, fileName));
+function writeToFile(fileName, content, filepath) {
+	if(!pathOn) filepath = null;
+	filepath = filepath || '.';
+	createFolderPath(filepath);
+	var file = fs.createWriteStream(path.join(outDir, filepath, fileName));
 	var output = 'module.exports = ';
 	if(_.includes(fileName, 'form.js')) {
 		if(formName === 'case-capture') content.elements = content.elements.concat(formDefaults.caseCaptureFooter);
@@ -180,4 +186,16 @@ function writeToFile(fileName, content) {
 		if(err) console.error(err);
 		file.end();
 	});
+}
+
+function createFolderPath(targetPath) {
+	var folders = _.filter(targetPath.split(path.sep), function(item) {
+		return !_.includes(item, '.');
+	});
+
+	_.reduce(folders, function(newPath, item) {
+		newPath = path.join(newPath, item);
+		if(!fs.existsSync(newPath)) { fs.mkdirSync(newPath); }
+		return newPath;
+	}, outDir);
 }

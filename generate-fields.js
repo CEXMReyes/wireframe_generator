@@ -4,9 +4,11 @@ var path = require('path');
 var pluralize = require('pluralize');
 var inDir = './input/';
 var outDir = './output/';
+// var outDir = '/Users/mreyes/git/config_montana_v5';
 var customDir = './custom-forms/';
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
+var pathOn = true;
 
 // Run
 if(isCustom) {
@@ -26,7 +28,7 @@ fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
 	var input = _.map(data.split('\n'), function (item) {
 		return item.split('\t');
 	});
-	writeToFile('index.js', generateIndex(input));
+	writeToFile('index.js', generateIndex(input), path.join('entities', entityName));
 });
 
 // Variables
@@ -56,7 +58,7 @@ function generateIndex(data) {
 	}
 
 	_.defaults(index, fieldsDefaults.indexFooter);
-	writeToFile('options.picklists.js', _.defaults(picklistOptions, picklistDefaults));
+	writeToFile('options.picklists.js', _.defaults(picklistOptions, picklistDefaults), 'config');
 	return index;
 }
 
@@ -86,15 +88,15 @@ function generateFields(listOfLists) {
 			}
 
 			// Uncomment to generate blank picklists
-			// var picklistData = list[2] || _.map(new Array(3), function(item, key) {
-			// 	return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
-			// }).join(',');
-			var picklistData = list[2];
+			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
+				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
+			}).join(',');
+			// var picklistData = list[2];
 
 			field.typeOptions = { picklistName: picklistName };
 			if(picklistDependencies) field.typeOptions['picklistDependencies'] = picklistDependencies;
 
-			if(picklistData) writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData));
+			if(picklistData) writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData), path.join('data', 'lists'));
 			addOptions(picklistName, picklistDependencies);
 		} else if(fieldtype === 'radio') {
 			if(list[2] && !isYesNo(list[2])) {
@@ -257,8 +259,11 @@ function capitalize(data) {
 	return capitalized.toString().replace(/,/g, ' ');
 }
 
-function writeToFile(fileName, content) {
-	var file = fs.createWriteStream(path.join(outDir, fileName));
+function writeToFile(fileName, content, filepath) {
+	if(!pathOn) filepath = null;
+	filepath = filepath || '.';
+	createFolderPath(filepath);
+	var file = fs.createWriteStream(path.join(outDir, filepath, fileName));
 	var output;
 	if(fileName === 'index.js') {
 		output = indexHeader + indexFormat(content) + ');';
@@ -277,4 +282,16 @@ function writeToFile(fileName, content) {
 		if(err) console.error(err);
 		file.end();
 	});
+}
+
+function createFolderPath(targetPath) {
+	var folders = _.filter(targetPath.split(path.sep), function(item) {
+		return !_.includes(item, '.');
+	});
+
+	_.reduce(folders, function(newPath, item) {
+		newPath = path.join(newPath, item);
+		if(!fs.existsSync(newPath)) { fs.mkdirSync(newPath); }
+		return newPath;
+	}, outDir);
 }
