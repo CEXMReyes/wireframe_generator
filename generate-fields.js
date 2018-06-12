@@ -4,6 +4,7 @@ var path = require('path');
 var pluralize = require('pluralize');
 var inDir = './input/';
 var outDir = './output/';
+var defDir = './defaults';
 // var outDir = '/Users/mreyes/git/config_montana_v5';
 var customDir = './custom-forms/';
 var entityName = process.argv[2] ? process.argv[2] : 'case';
@@ -55,6 +56,7 @@ function generateIndex(data) {
 				fieldsDefaults.defaultResolutionFields);
 		};
 		index = { fields: fields };
+		addDefaultGrids();
 	}
 
 	_.defaults(index, fieldsDefaults.indexFooter);
@@ -205,6 +207,20 @@ function addOptions(option, parents) {
 	};
 }
 
+function addDefaultGrids() {
+	if(entityName === 'case') {
+		fs.readFile(path.join(defDir, 'grids.js'), 'utf8', function (err, data) {
+			if (err) console.error(err);
+			writeToFile('grids.js', data, path.join('entities', entityName));
+		});
+	} else if(entityName === 'party') {
+		fs.readFile(path.join(defDir, 'grids-party.js'), 'utf8', function (err, data) {
+			if (err) console.error(err);
+			writeToFile('grids.js', data, path.join('entities', entityName));
+		});
+	}
+}
+
 function isYesNo(radios) {
 	var radioArray = radios.split(',');
 	var result = true;
@@ -267,7 +283,7 @@ function writeToFile(fileName, content, filepath) {
 	var output;
 	if(fileName === 'index.js') {
 		output = indexHeader + indexFormat(content) + ');';
-	} else if(fileName === 'options.picklists.js' || fileName === 'grids.js') {
+	} else if(fileName === 'options.picklists.js' || (isCustom && fileName === 'grids.js')) {
 		output = 'module.exports = ' + optionsFormat(content) + ';';
 	} else if(_.includes(fileName, 'sys_')) {
 		output = 'module.exports = ' + moduleFormat(content) + ';';
