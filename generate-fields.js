@@ -84,11 +84,14 @@ function generateFields(listOfLists) {
 				list[2] = null;
 			}
 
-			// Uncomment to generate blank picklists
-			var picklistData = list[2] || _.map(new Array(3), function(item, key) {
-				return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
-			}).join(',');
-			// var picklistData = list[2];
+			var picklistData;
+			if(configGen.generateBlankLists) {
+				picklistData = list[2] || _.map(new Array(3), function(item, key) {
+					return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
+				}).join(',');
+			} else {
+				picklistData = list[2];
+			}
 
 			field.typeOptions = { picklistName: picklistName };
 			if(picklistDependencies) field.typeOptions['picklistDependencies'] = picklistDependencies;

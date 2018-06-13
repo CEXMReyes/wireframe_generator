@@ -1,5 +1,6 @@
 module.exports = {
 	pathOn: false,
+	generateBlankLists: true,
 	defDir: './defaults',
 	inDir: './input/',
 	outDir: './output/',
