@@ -2,21 +2,16 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var defDir = './defaults';
-var inDir = './input/';
-var outDir = './output/';
-var projDir = '/Users/mreyes/git/config_montana_v5';
-var customDir = './custom-forms/';
+var configGen = require('./config-generators.js');
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
-var pathOn = false;
 
 // Run
 if(isCustom) {
-	fs.readdir(customDir, function(err, files) {
+	fs.readdir(configGen.customFormsDir, function(err, files) {
 		if(err) console.error(err);
 		_.forEach(files, function(file) {
-			fs.readFile(path.join(customDir, file), 'utf8', function (err, data) {
+			fs.readFile(path.join(configGen.customFormsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
 				writeToFile(file.replace('entity', entityName), replaceEntityName(data));
 			});
@@ -24,7 +19,7 @@ if(isCustom) {
 	});
 }
 
-fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
+fs.readFile(path.join(configGen.inDir, 'fields.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	var input = _.map(data.split('\n'), function (item) {
 		return item.split('\t');
@@ -209,12 +204,12 @@ function addOptions(option, parents) {
 
 function addDefaultGrids() {
 	if(entityName === 'case') {
-		fs.readFile(path.join(defDir, 'grids.js'), 'utf8', function (err, data) {
+		fs.readFile(path.join(configGen.defDir, 'grids.js'), 'utf8', function (err, data) {
 			if (err) console.error(err);
 			writeToFile('grids.js', data, path.join('entities', entityName));
 		});
 	} else if(entityName === 'party') {
-		fs.readFile(path.join(defDir, 'grids-party.js'), 'utf8', function (err, data) {
+		fs.readFile(path.join(configGen.defDir, 'grids-party.js'), 'utf8', function (err, data) {
 			if (err) console.error(err);
 			writeToFile('grids.js', data, path.join('entities', entityName));
 		});
@@ -276,13 +271,12 @@ function capitalize(data) {
 }
 
 function writeToFile(fileName, content, filepath) {
-	var baseDir = pathOn ? projDir : outDir;
+	var baseDir = configGen.pathOn ? configGen.projDir : configGen.outDir;
 	createFolderPath(filepath, baseDir);
 
 	var file;
-	console.log(entityName, fileName);
-	if(entityName !== 'case' && fileName === 'options.picklists.js') {
-		file = fs.createWriteStream(path.join(outDir, fileName));
+	if(entityName !== 'case' && fileName === 'options.picklists.js' && configGen.pathOn) {
+		file = fs.createWriteStream(path.join(configGen.outDir, fileName));
 	} else {
 		file = fs.createWriteStream(path.join(baseDir, filepath, fileName));
 	}

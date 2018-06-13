@@ -2,10 +2,10 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var Papa = require('papaparse');
-var inDir = './input';
+var configGen = require('./config-generators.js');
 var run = process.argv[2] === 'run';
 
-fs.readFile(path.join(inDir, 'spec.txt'), 'utf8', function (err, data) {
+fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	sortColumns(data);
 
@@ -59,7 +59,7 @@ function sortColumns(data) {
 
 
 function writeToFile(content, fileName) {
-	var file = fs.createWriteStream(path.join(inDir, fileName));
+	var file = fs.createWriteStream(path.join(configGen.inDir, fileName));
 	file.write(content, 'utf8', function(err) {
 		if(err) logger.error(err);
 		file.end();

@@ -1,21 +1,17 @@
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var inDir = './input/';
-var outDir = './output/';
-var projDir = '/Users/mreyes/git/config_montana_v5';
-var customDir = './custom-tabs/';
+var configGen = require('./config-generators.js');
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
 var entityName = (_.split(formName, '-'))[0];
 var isTab = process.argv[3] === 'tab';
-var pathOn = false;
 
 // Run
 if(isTab) {
-	fs.readdir(customDir, function(err, files) {
+	fs.readdir(configGen.customTabsDir, function(err, files) {
 		if(err) console.error(err);
 		_.forEach(files, function(file) {
-			fs.readFile(path.join(customDir, file), 'utf8', function (err, data) {
+			fs.readFile(path.join(configGen.customTabsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
 				writeToFile(file.replace('tab-name', formName), replaceTabName(data));
 			});
@@ -23,7 +19,7 @@ if(isTab) {
 	});
 }
 
-fs.readFile(path.join(inDir, 'form.txt'), 'utf8', function (err, data) {
+fs.readFile(path.join(configGen.inDir, 'form.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	var input =  _.map(data.split('\n'), function (item) {
 		return item.split('\t');
@@ -165,7 +161,7 @@ function replaceTabName(data) {
 }
 
 function writeToFile(fileName, content, filepath) {
-	var baseDir = pathOn ? projDir : outDir;
+	var baseDir = configGen.pathOn ? configGen.projDir : configGen.outDir;
 	createFolderPath(filepath, baseDir);
 
 	var file = fs.createWriteStream(path.join(baseDir, filepath, fileName));

@@ -2,11 +2,10 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var inDir = './input/';
-var outDir = './output/';
+var configGen = require('./config-generators.js');
 
 // Run
-fs.readFile(path.join(inDir, 'picklists.txt'), 'utf8', function(err, data) {
+fs.readFile(path.join(configGen.inDir, 'picklists.txt'), 'utf8', function(err, data) {
 	if (err) console.error(err);
 	var input = _.map(data.split('\n'), function(item) {
 		return item.split('\t');
@@ -96,7 +95,7 @@ function optionsFormat(data) {
 }
 
 function writeToFile(fileName, content) {
-	var file = fs.createWriteStream(path.join(outDir, fileName));
+	var file = fs.createWriteStream(path.join(configGen.outDir, fileName));
 	var output;
 	if(_.includes(fileName, '.json')) {
 		output = picklistFormat(content);
