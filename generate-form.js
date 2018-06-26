@@ -8,18 +8,12 @@ var isTab = process.argv[3] === 'tab';
 
 // Run
 if(isTab) {
-	var customTabPaths = {
-		'options.case-details-tabs-ex.js': 'public/config',
-		'tab-name-tmpl.dust': 'public/templates/case',
-		'tab-name-view.js': 'public/views/case'
-	};
-
 	fs.readdir(configGen.customTabsDir, function(err, files) {
 		if(err) console.error(err);
 		_.forEach(files, function(file) {
 			fs.readFile(path.join(configGen.customTabsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
-				writeToFile(file.replace('tab-name', formName), replaceTabName(data), customTabPaths[file]);
+				writeToFile(file.replace('tab-name', formName), replaceTabName(data), configGen.customTabFilesPaths[file]);
 			});
 		});
 	});

@@ -8,20 +8,19 @@ var isCustom = process.argv[3] === 'custom';
 
 // Run
 if(isCustom) {
-	var customFormPaths = {
-		'acl.js': path.join('entities', entityName),
-		'entity-details-tmpl.dust': 'public/templates/custom-forms',
-		'entity-tmpl.dust': 'public/templates/custom-forms',
-		'entity-view.js': 'public/views/custom-forms',
-		'new-entity-tmpl.dust': 'public/templates/custom-forms'
-	};
-
 	fs.readdir(configGen.customFormsDir, function(err, files) {
 		if(err) console.error(err);
 		_.forEach(files, function(file) {
 			fs.readFile(path.join(configGen.customFormsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
-				writeToFile(file.replace('entity', entityName), replaceEntityName(data), customFormPaths[file]);
+
+				var filepath;
+				if (file === 'acl.js') {
+					filepath = configGen.customFormFilesPaths[file](entityName);
+				} else {
+					filepath = configGen.customFormFilesPaths[file];
+				}
+				writeToFile(file.replace('entity', entityName), replaceEntityName(data), filepath);
 			});
 		});
 	});
