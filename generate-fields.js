@@ -13,7 +13,14 @@ if(isCustom) {
 		_.forEach(files, function(file) {
 			fs.readFile(path.join(configGen.customFormsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
-				writeToFile(file.replace('entity', entityName), replaceEntityName(data));
+
+				var filepath;
+				if (file === 'acl.js') {
+					filepath = configGen.customFormFilesPaths[file](entityName);
+				} else {
+					filepath = configGen.customFormFilesPaths[file];
+				}
+				writeToFile(file.replace('entity', entityName), replaceEntityName(data), filepath);
 			});
 		});
 	});
@@ -42,9 +49,9 @@ function generateIndex(data) {
 		indexHeader = fieldsDefaults.customHeader;
 		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
-		writeToFile('sys_' + entityName + '.js', generateCustomController());
-		writeToFile(entityName + '-model.js', generateModel());
-		writeToFile('grids.js', generateGrids());
+		writeToFile('sys_' + entityName + '.js', generateCustomController(), path.join('config', 'custom-forms'));
+		writeToFile(entityName + '-model.js', generateModel(), path.join('public', 'models'));
+		writeToFile('grids.js', generateGrids(), path.join('entities', entityName));
 	} else {
 		if(entityName === 'case') {
 			fields = _.concat(fieldsDefaults.defaultCaseFields, fields,

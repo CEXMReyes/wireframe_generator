@@ -13,7 +13,7 @@ if(isTab) {
 		_.forEach(files, function(file) {
 			fs.readFile(path.join(configGen.customTabsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
-				writeToFile(file.replace('tab-name', formName), replaceTabName(data));
+				writeToFile(file.replace('tab-name', formName), replaceTabName(data), configGen.customTabFilesPaths[file]);
 			});
 		});
 	});
