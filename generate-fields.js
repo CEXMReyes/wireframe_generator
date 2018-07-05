@@ -2,66 +2,43 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var inDir = './input/';
-var outDir = './output/';
-var customDir = './custom-forms/';
+var configGen = require('./config-generators.js');
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
 
 // Run
 if(isCustom) {
-	fs.readdir(customDir, function(err, files) {
+	fs.readdir(configGen.customFormsDir, function(err, files) {
 		if(err) console.error(err);
 		_.forEach(files, function(file) {
-			fs.readFile(path.join(customDir, file), 'utf8', function (err, data) {
+			fs.readFile(path.join(configGen.customFormsDir, file), 'utf8', function (err, data) {
 				if (err) console.error(err);
-				writeToFile(file.replace('entity', entityName), replaceEntityName(data));
+
+				var filepath;
+				if (file === 'acl.js') {
+					filepath = configGen.customFormFilesPaths[file](entityName);
+				} else {
+					filepath = configGen.customFormFilesPaths[file];
+				}
+				writeToFile(file.replace('entity', entityName), replaceEntityName(data), filepath);
 			});
 		});
 	});
 }
 
-fs.readFile(path.join(inDir, 'fields.txt'), 'utf8', function (err, data) {
+fs.readFile(path.join(configGen.inDir, 'fields.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	var input = _.map(data.split('\n'), function (item) {
 		return item.split('\t');
 	});
-	writeToFile('index.js', generateIndex(input));
+	writeToFile('index.js', generateIndex(input), path.join('entities', entityName));
 });
 
 // Variables
-var picklistOptions = {};
+var fieldsDefaults = _.cloneDeep(require('./defaults/fields-defaults.js'));
 var picklistDefaults = require('./defaults/options.picklists.js');
-var indexHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
-	'var parentEnt = require(\'isight/entities/' + entityName + '\');\n\n' +
-	'module.exports = extend(parentEnt, ';
-var customHeader = 'var extend = require(\'isight/entities/extend.js\');\n' +
-	'var standardChildConfig = require(\'isight/entities/standard-child-config.js\');\n\n' +
-	'module.exports = extend(standardChildConfig, ';
-var modelHeader = 'var BBModel = require(\'isight/public/lib/backbone-model.js\');\n\n' +
-	'module.exports = BBModel.extend(';
-var indexFooter = {
-	acl: 'require(\'./acl.js\')',
-	grids: 'require(\'./grids.js\')',
-	rules: 'require(\'./rules.js\')',
-	validation: 'require(\'./validation.js\')'
-}
-var defaultCaseFields = [
-	{ field: 'openToClosedCalendarDays', type: 'number', caption: 'Open To Closed Calendar Days', kind: 'system' },
-	{ field: 'openToClosedBusinessDays', type: 'number', caption: 'Open To Closed Business Days', kind: 'system' },
-	{ field: 'dataSource', type: 'textbox', kind: 'hidden' }
-];
-var defaultCustomOptions = {
-	db: 'default',
-	table: 'sys_' + entityName,
-	entity: { base: 'sys', name: entityName },
-	caption: _.startCase(entityName),
-	captionPlural: pluralize(_.startCase(entityName)),
-	addCaption: 'Add ' + _.startCase(entityName),
-	newCaption: 'New ' + _.startCase(entityName),
-	search: true,
-	api: { useGenericApi: true }
-}
+var indexHeader = fieldsDefaults.indexHeader(entityName);
+var picklistOptions = {};
 
 // Functions
 function generateIndex(data) {
@@ -69,38 +46,65 @@ function generateIndex(data) {
 	var index;
 
 	if(isCustom) {
-		indexHeader = customHeader;
-		index = defaultCustomOptions;
+		indexHeader = fieldsDefaults.customHeader;
+		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
-		writeToFile('sys_' + entityName + '.js', generateCustomController());
-		writeToFile(entityName + '-model.js', generateModel());
-		writeToFile('grids.js', generateGrids());
+		writeToFile('sys_' + entityName + '.js', generateCustomController(), path.join('config', 'custom-forms'));
+		writeToFile(entityName + '-model.js', generateModel(), path.join('public', 'models'));
+		writeToFile('grids.js', generateGrids(), path.join('entities', entityName));
 	} else {
-		if(entityName === 'case') fields = _.concat(defaultCaseFields, fields);
+		if(entityName === 'case') {
+			fields = _.concat(fieldsDefaults.defaultCaseFields, fields,
+				fieldsDefaults.defaultResolutionFields);
+		};
 		index = { fields: fields };
+		addDefaultGrids();
 	}
 
-	_.assign(index, indexFooter);
-	writeToFile('options.picklists.js', _.assign(picklistOptions, picklistDefaults));
+	_.defaults(index, fieldsDefaults.indexFooter);
+	writeToFile('options.picklists.js', _.defaults(picklistOptions, picklistDefaults), 'config');
 	return index;
 }
 
 function generateFields(listOfLists) {
 	return _.map(listOfLists, function (list) {
 		var fieldtype = correctTypeName(list[1]);
-		if(!fieldtype) throw 'input contains an invalid type';
+		if(!fieldtype) throw 'input contains an invalid type: ' + list[1];
 
 		var field = {
 			field: _.camelCase(list[0]),
 			type: fieldtype,
 			caption: list[0].trim().replace(/'/g, '\"')
-		}
+		};
 
 		if(_.includes(fieldtype, 'picklist')) {
-			var picklistName = _.snakeCase(pluralize(list[0].trim()));
+			var term = list[0].trim();
+			var picklistName = _.snakeCase(term) === 'actions_taken' ?
+				_.snakeCase(term) : pluralize(_.snakeCase(term));
+			var picklistDependencies;
+
+			if(list[2] && list[2].charAt(0) === '#') {
+				picklistDependencies = list[2].slice(1).split(',');
+				picklistDependencies = _.map(picklistDependencies, function(item) {
+					return _.camelCase(item);
+				});
+				list[2] = null;
+			}
+
+			var picklistData;
+			if(configGen.generateBlankLists) {
+				picklistData = list[2] || _.map(new Array(3), function(item, key) {
+					return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
+				}).join(',');
+			} else {
+				picklistData = list[2];
+			}
+
 			field.typeOptions = { picklistName: picklistName };
-			if(list[2]) writeToFile(picklistName + '.json', generatePicklist(picklistName, list[2]));
-			addOptions(picklistName);
+			if(picklistDependencies) field.typeOptions['picklistDependencies'] = picklistDependencies;
+
+			if(picklistData) writeToFile(picklistName + '.json', generatePicklist(picklistName, picklistData), path.join('data', 'lists'));
+			addOptions(picklistName, picklistDependencies);
 		} else if(fieldtype === 'radio') {
 			if(list[2] && !isYesNo(list[2])) {
 				field.typeOptions = generateRadios(list[2]);
@@ -120,9 +124,13 @@ function correctTypeName(type) {
 	if(_.includes(type, 'multi') || type === 'picklist[]') return 'picklist[]';
 	if(_.includes(type, 'editor') || _.includes(type, 'area')) return 'texteditor';
 	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
+	if(_.includes(type, 'date') && _.includes(type, 'time')) return 'datetime';
 	if(_.includes(type, 'date')) return 'date';
 	if(_.includes(type, 'radio')) return 'radio';
+	if(_.includes(type, 'check')) return 'checkbox';
 	if(_.includes(type, 'user')) return 'user';
+	if(_.includes(type, 'phone')) return 'phoneNumber';
+	if(_.includes(type, 'number')) return 'number';
 }
 
 function generatePicklist(listName, list) {
@@ -155,7 +163,7 @@ function generateCustomController() {
 		model: entityName + '-model.js',
 		gridName: 'main-' + entityName,
 		caseGridName: 'case-' + entityName
-	}
+	};
 }
 
 function generateGrids() {
@@ -175,7 +183,7 @@ function generateGrids() {
 			{ field: 'number' },
 			{ field: 'createdDate' }
 		]
-	}
+	};
 	return gridObj;
 }
 
@@ -187,13 +195,34 @@ function generateModel() {
 			name: entityName
 		},
 		idAttribute: 'id'
-	}
+	};
 }
 
-function addOptions(option) {
+function addOptions(option, parents) {
+	if(parents) {
+		parents = _.map(parents, function(item) {
+			return pluralize(_.snakeCase(item));
+		});
+	}
+
 	picklistOptions[option] = {
 		text: 'value',
-		value: 'value'
+		value: 'value',
+		parents: parents
+	};
+}
+
+function addDefaultGrids() {
+	if(entityName === 'case') {
+		fs.readFile(path.join(configGen.defDir, 'grids.js'), 'utf8', function (err, data) {
+			if (err) console.error(err);
+			writeToFile('grids.js', data, path.join('entities', entityName));
+		});
+	} else if(entityName === 'party') {
+		fs.readFile(path.join(configGen.defDir, 'grids-party.js'), 'utf8', function (err, data) {
+			if (err) console.error(err);
+			writeToFile('grids.js', data, path.join('entities', entityName));
+		});
 	}
 }
 
@@ -225,14 +254,14 @@ function optionsFormat(data) {
 function moduleFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/\"([^(\")"]+)\":/g,"$1:")
-		.replace(/"/g, "'")
+		.replace(/"/g, "'");
 }
 
 function modelFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/\"([^(\")"]+)\":/g,"$1:")
 		.replace(/"/g, "'")
-		.replace(/urlRoot: \'([^(\")"]+)\'\',/,"urlRoot: $1',")
+		.replace(/urlRoot: \'([^(\")"]+)\'\',/,"urlRoot: $1',");
 }
 
 function replaceEntityName(data) {
@@ -251,17 +280,26 @@ function capitalize(data) {
 	return capitalized.toString().replace(/,/g, ' ');
 }
 
-function writeToFile(fileName, content) {
-	var file = fs.createWriteStream(path.join(outDir, fileName));
+function writeToFile(fileName, content, filepath) {
+	var baseDir = configGen.pathOn ? configGen.projDir : configGen.outDir;
+	createFolderPath(filepath, baseDir);
+
+	var file;
+	if(entityName !== 'case' && fileName === 'options.picklists.js' && configGen.pathOn) {
+		file = fs.createWriteStream(path.join(configGen.outDir, fileName));
+	} else {
+		file = fs.createWriteStream(path.join(baseDir, filepath, fileName));
+	}
+
 	var output;
 	if(fileName === 'index.js') {
 		output = indexHeader + indexFormat(content) + ');';
-	} else if(fileName === 'options.picklists.js' || fileName === 'grids.js') {
+	} else if(fileName === 'options.picklists.js' || (isCustom && fileName === 'grids.js')) {
 		output = 'module.exports = ' + optionsFormat(content) + ';';
 	} else if(_.includes(fileName, 'sys_')) {
 		output = 'module.exports = ' + moduleFormat(content) + ';';
 	} else if(_.includes(fileName, 'model.js')) {
-		output = modelHeader + modelFormat(content) + ');';
+		output = fieldsDefaults.modelHeader + modelFormat(content) + ');';
 	} else if(_.includes(fileName, '.json')) {
 		output = JSON.stringify(content, null, '\t');
 	} else {
@@ -271,4 +309,16 @@ function writeToFile(fileName, content) {
 		if(err) console.error(err);
 		file.end();
 	});
+}
+
+function createFolderPath(targetPath, baseDir) {
+	var folders = _.filter(targetPath.split(path.sep), function(item) {
+		return !_.includes(item, '.');
+	});
+
+	_.reduce(folders, function(newPath, item) {
+		newPath = path.join(newPath, item);
+		if(!fs.existsSync(newPath)) { fs.mkdirSync(newPath); }
+		return newPath;
+	}, baseDir);
 }

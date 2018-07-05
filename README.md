@@ -9,7 +9,7 @@ A collection of scripts to generate 3.x wireframing files. A proper UI will come
 Make sure to install all packages in the package.json.
 
 
-Create a folder called **output**, this is where the generated files will be stored.
+Make sure a folder named **output** exists in the root directory, this is where the generated files will be stored.
 
 ### Installing
 
@@ -62,6 +62,8 @@ Script will default to creating a case-capture form. In order to specify otherwi
   * **form.js**
   * **rules.js**
   * **validation.js**
+
+Supports creation of sections, using **###** as a flag dentote the start of the section and **##** to denote the end.
 
 Paste input in the **form.txt** file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 

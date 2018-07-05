@@ -43,7 +43,7 @@ module.exports = BBFView.extend({
 			});
 			crumbs.push({
 				title: utils.translateKey('entity'),
-				url: '/case/' + this.model.get('caseId') + '/entities'
+				url: '/case/' + this.model.get('caseId') + '/activity/entity'
 			});
 		} else {
 			crumbs.push({

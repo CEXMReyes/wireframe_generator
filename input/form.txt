@@ -6,18 +6,23 @@ Incident Date	*
 Incident Location
 Reporting Channel	*
 Urgency	*
+### Title IX Information
 Primary Basis of Discrimination		Department = Title IX
 Secondary Basis of Discrimination		Department = Title IX
 Clery Report Filed?		Department = Title IX
+##
 Complainant Type	Department = Complaints	Department = Complaints
 Vehicle Type	Case Type = Vehicle Accident	Case Type = Vehicle Accident
+### Health and Safety Information
 OSHA Report Filed?	Department = Health & Safety	Department = Health & Safety
 Corrective Action Required?	Department = Health & Safety	Department = Health & Safety
 Leave Required?	Department = Health & Safety OR Case Type = Harassment	Department = Health & Safety OR Case Type = Harassment
+##
 Leave Type	Case Type = Leaves Administration	Case Type = Leaves Administration
 Other Leave Type	Leave Type = Other	Leave Type = Other
 Leave Start Date	Case Type = Leaves Administration	Case Type = Leaves Administration
 Expected Return Date	Case Type = Leaves Administration	Case Type = Leaves Administration
+### Police Report
 Police Report Filed?	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs
 Reported To Campus Police?	Department = Security OR Title IX	Department = Security OR Title IX
 Legal Involved?	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs
@@ -28,6 +33,7 @@ Date Amber Alert Filed	Amber Alert Filed = Yes	Amber Alert Filed = Yes
 Alcohol Involved	Case Type = Assault	Case Type = Assault
 Drugs Involved	Case Type = Assault	Case Type = Assault
 Union Involved	Sub Case Type = Union	Case Type = Grievance || Sub Case Type = Union
+##
 Grievance Type		Case Type = Grievance || Sub Case Type = Union
 Other Grievance Type 	Grievance Type = Other	Grievance Type = Other
 Interim Action		Case Type = Assault, Discrimination, Payroll, Threat, Policy Violation

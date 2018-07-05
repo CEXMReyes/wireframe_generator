@@ -2,11 +2,10 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var inDir = './input/';
-var outDir = './output/';
+var configGen = require('./config-generators.js');
 
 // Run
-fs.readFile(path.join(inDir, 'picklists.txt'), 'utf8', function(err, data) {
+fs.readFile(path.join(configGen.inDir, 'picklists.txt'), 'utf8', function(err, data) {
 	if (err) console.error(err);
 	var input = _.map(data.split('\n'), function(item) {
 		return item.split('\t');
@@ -17,7 +16,7 @@ fs.readFile(path.join(inDir, 'picklists.txt'), 'utf8', function(err, data) {
 
 // Functions
 function generatePickLists(listOfLists) {
-	var listName = _.snakeCase(pluralize(listOfLists[0][listOfLists[0].length - 1].trim()));
+	var listName = pluralize(_.snakeCase(listOfLists[0][listOfLists[0].length - 1].trim()));
 	var hasParent = listOfLists[0].length > 1;
 	var nextList = hasParent ? [listOfLists[0].slice(0, listOfLists[0].length -1)] : [];
 
@@ -51,7 +50,7 @@ function generatePickLists(listOfLists) {
 
 function generateOptions(options) {
 	var listNames = _.map(options, function(item) {
-		return _.snakeCase(pluralize(item.trim()));
+		return pluralize(_.snakeCase(item.trim()));
 	});
 
 	var output = _.reduce(listNames, function(acc, item, key) {
@@ -96,7 +95,7 @@ function optionsFormat(data) {
 }
 
 function writeToFile(fileName, content) {
-	var file = fs.createWriteStream(path.join(outDir, fileName));
+	var file = fs.createWriteStream(path.join(configGen.outDir, fileName));
 	var output;
 	if(_.includes(fileName, '.json')) {
 		output = picklistFormat(content);
