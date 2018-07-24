@@ -15,7 +15,7 @@ module.exports = {
 		},
 		'entity-details-tmpl.dust': 'public/templates/custom-forms',
 		'entity-tmpl.dust': 'public/templates/custom-forms',
-		'entity-view.js': 'public/views/custom-forms',
+		'entity-details-view.js': 'public/views/custom-forms',
 		'new-entity-tmpl.dust': 'public/templates/custom-forms'
 	},
 	customTabFilesPaths: {

@@ -159,7 +159,7 @@ function generateCustomController() {
 			base: 'sys',
 			name: entityName
 		},
-		view: entityName + '-view.js',
+		view: entityName + '-details-view.js',
 		model: entityName + '-model.js',
 		gridName: 'main-' + entityName,
 		caseGridName: 'case-' + entityName
