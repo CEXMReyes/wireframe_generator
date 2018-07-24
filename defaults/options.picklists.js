@@ -122,11 +122,6 @@ module.exports = {
 		value: 'value',
 		static: true
 	},
-	'email_reminder_days': {
-		text: 'value',
-		value: 'value',
-		static: true
-	},
 	'todo_statuses': {
 		text: 'value',
 		value: 'value',
