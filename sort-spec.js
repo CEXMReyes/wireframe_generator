@@ -29,29 +29,33 @@ function sortColumns(data) {
 
 	_.forEach(rows, function(row) {
 		// console.log(row);
-		var fieldLine = [row[0], row[1]];
-		var formLine = [row[0]];
-
-		if(row[2]) {
-			formLine.push(row[2]);
+		if(_.includes(row[0], '##')) {
+			form.push(_.trim(row[0]));
 		} else {
-			formLine.push('');
-		}
+			var fieldLine = [row[0], row[1]];
+			var formLine = [row[0]];
 
-		if(row[3]) {
-			formLine.push(row[3]);
-		} else {
-			formLine.push('');
-		}
+			if(row[2]) {
+				formLine.push(row[2]);
+			} else {
+				formLine.push('');
+			}
 
-		if(row[4]) {
-			fieldLine.push(row[4]);
-		} else {
-			fieldLine.push('');
-		}
+			if(row[3]) {
+				formLine.push(row[3]);
+			} else {
+				formLine.push('');
+			}
 
-		fields.push(_.trim(fieldLine.join('\t')));
-		form.push(_.trim(formLine.join('\t')));
+			if(row[4]) {
+				fieldLine.push(row[4]);
+			} else {
+				fieldLine.push('');
+			}
+
+			fields.push(_.trim(fieldLine.join('\t')));
+			form.push(_.trim(formLine.join('\t')));
+		}
 	});
 
 	writeToFile(fields.join('\n'), 'fields.txt');
