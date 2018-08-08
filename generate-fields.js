@@ -130,7 +130,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'check')) return 'checkbox';
 	if(_.includes(type, 'user')) return 'user';
 	if(_.includes(type, 'phone')) return 'phoneNumber';
-	if(_.includes(type, 'number')) return 'number';
+	if(_.includes(type, 'num')) return 'number';
 }
 
 function generatePicklist(listName, list) {
