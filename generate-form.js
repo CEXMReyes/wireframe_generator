@@ -55,31 +55,10 @@ function generateForm(listOfLists) {
 		}
 
 		var field = { field: _.camelCase(list[0]) };
-		var rule = '';
-		var multiRules = [];
 
-		if(list[1]) {
-			if(_.includes(list[1], '||')) {
-				multiRules = _.map(list[1].split('||'), function(item) {
-					return generateRules(item);
-				});
-				rule = multiRules.toString().replace(/,/g, ' || ');
-				addValidation(field.field, rule);
-			} else {
-				rule = list[1].trim() === '*' ? '*' : generateRules(list[1]);
-				addValidation(field.field, rule);
-			}
-		}
-		if(list[2]) {
-			if(_.includes(list[2], '||')) {
-				multiRules = _.map(list[2].split('||'), function(item) {
-					return generateRules(item);
-				});
-				field.displayRule = multiRules.toString().replace(/,/g, ' || ');
-			} else {
-				field.displayRule = generateRules(list[2]);
-			}
-		}
+		if(list[1]) addValidation(field.field, handleRule(list[1]));
+		if(list[2]) field.displayRule = handleRule(list[2]);
+
 		if(isSection) {
 			section.elements.push(field);
 		} else {
@@ -99,13 +78,14 @@ function generateForm(listOfLists) {
 }
 
 function generateRules(data) {
+	if(data === '*') return '*';
 	var ruleList = data.split('=');
 	var displayRule = _.map(ruleList[1].split('OR'), function(value) {
 		var rule = _.camelCase(ruleList[0] + ' is ' + value);
 		addRule(ruleList[0], rule, value);
 		return rule;
 	});
-	return displayRule.toString().replace(/,/g, ' || ');
+	return displayRule.join(' || ');
 }
 
 function addRule(field, rule, value) {
@@ -130,6 +110,15 @@ function addValidation(childField, displayRule) {
 		});
 		if(!conditionExists) validation.dependentMandatory$.push({ condition: displayRule, fields: [childField] });
 	}
+}
+
+function handleRule(data) {
+	var multiRules = _.map(data.split('||'), function(item) {
+		return _.includes(item, '&&') ? _.map(item.split('&&'), function(innerItem) {
+			return generateRules(innerItem);
+		}) : generateRules(item);
+	});
+	return multiRules.join(' || ').replace(/,/g, ' && ');
 }
 
 function rulesFormat(data) {

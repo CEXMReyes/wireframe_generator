@@ -16,11 +16,11 @@ Vehicle Type	Case Type = Vehicle Accident	Case Type = Vehicle Accident
 ### Health and Safety Information
 OSHA Report Filed?	Department = Health & Safety	Department = Health & Safety
 Corrective Action Required?	Department = Health & Safety	Department = Health & Safety
-Leave Required?	Department = Health & Safety OR Case Type = Harassment	Department = Health & Safety OR Case Type = Harassment
+Leave Required?	Department = Health & Safety || Case Type = Harassment	Department = Health & Safety || Case Type = Harassment
 ##
 Leave Type	Case Type = Leaves Administration	Case Type = Leaves Administration
 Other Leave Type	Leave Type = Other	Leave Type = Other
-Leave Start Date	Case Type = Leaves Administration	Case Type = Leaves Administration
+Leave Start Date	Case Type = Leaves Administration && Leave Type = Other	Case Type = Leaves Administration
 Expected Return Date	Case Type = Leaves Administration	Case Type = Leaves Administration
 ### Police Report
 Police Report Filed?	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs	Case Type = Harassment OR Bomb Threat OR Criminal OR Missing Child OR Theft OR Vandalism/Sabotage OR Assault OR Fraud OR Alcohol/Drugs
@@ -32,10 +32,10 @@ Amber Alert Filed?	Case Type = Missing Child	Case Type = Missing Child
 Date Amber Alert Filed	Amber Alert Filed = Yes	Amber Alert Filed = Yes
 Alcohol Involved	Case Type = Assault	Case Type = Assault
 Drugs Involved	Case Type = Assault	Case Type = Assault
-Union Involved	Sub Case Type = Union	Case Type = Grievance || Sub Case Type = Union
+Union Involved	Sub Case Type = Union	Case Type = Grievance OR Assault && Sub Case Type = Union
 ##
-Grievance Type		Case Type = Grievance || Sub Case Type = Union
+Grievance Type		Case Type = Grievance && Sub Case Type = Union
 Other Grievance Type 	Grievance Type = Other	Grievance Type = Other
-Interim Action		Case Type = Assault, Discrimination, Payroll, Threat, Policy Violation
+Interim Action		Case Type = Assault OR Discrimination OR Payroll OR Threat OR Policy Violation
 Actions Taken
 Case Details
