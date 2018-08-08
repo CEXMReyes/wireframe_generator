@@ -120,8 +120,8 @@ function generateFields(listOfLists) {
 
 function correctTypeName(type) {
 	type = type.toLowerCase().trim();
-	if(_.includes(type, 'drop') || type === 'picklist') return 'picklist';
 	if(_.includes(type, 'multi') || type === 'picklist[]') return 'picklist[]';
+	if(_.includes(type, 'drop') || type === 'picklist') return 'picklist';
 	if(_.includes(type, 'editor') || _.includes(type, 'area')) return 'texteditor';
 	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
 	if(_.includes(type, 'date') && _.includes(type, 'time')) return 'datetime';
