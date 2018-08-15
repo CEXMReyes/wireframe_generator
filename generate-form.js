@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
-var configGen = require('./config-generators.js');
+var configGen = require('./config.js');
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
 var entityName = (_.split(formName, '-'))[0];
 var isTab = process.argv[3] === 'tab';

@@ -2,7 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var Papa = require('papaparse');
-var configGen = require('./config-generators.js');
+var configGen = require('./config.js');
 var run = process.argv[2] === 'run';
 
 fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data) {

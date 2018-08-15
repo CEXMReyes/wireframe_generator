@@ -2,7 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var configGen = require('./config-generators.js');
+var configGen = require('./config.js');
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
 

@@ -6,7 +6,7 @@ module.exports = {
 	defDir: './defaults',
 	inDir: './input/',
 	outDir: './output/',
-	projDir: '<PROJECT PATH>',
+	projDir: '/Users/mreyes/git/config_umuc_v5',
 	customFormsDir:'./custom-forms/',
 	customTabsDir:'./custom-tabs/',
 	customFormFilesPaths: {

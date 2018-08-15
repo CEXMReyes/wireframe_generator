@@ -2,7 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
-var configGen = require('./config-generators.js');
+var configGen = require('./config.js');
 
 // Run
 fs.readFile(path.join(configGen.inDir, 'picklists.txt'), 'utf8', function(err, data) {

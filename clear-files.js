@@ -2,7 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
-var configGen = require('./config-generators.js');
+var configGen = require('./config.js');
 
 fs.readdir(configGen.outDir, function(err, files) {
 	if(err) console.error(err);
