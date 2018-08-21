@@ -126,6 +126,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'box') || _.includes(type, 'text')) return 'textbox';
 	if(_.includes(type, 'date') && _.includes(type, 'time')) return 'datetime';
 	if(_.includes(type, 'date')) return 'date';
+	if(_.includes(type, 'time')) return 'time';
 	if(_.includes(type, 'radio')) return 'radio';
 	if(_.includes(type, 'check')) return 'checkbox';
 	if(_.includes(type, 'user')) return 'user';
