@@ -47,7 +47,8 @@ module.exports = {
 		}
 		model.set({
 			filterField: attributes.filterField,
-			filterFieldName: attributes.filterField ? attributes.filterField : utils.translateKey('all'),
+			filterFieldName: attributes.filterField ? attributes.filterField
+				: utils.translateKey('all')
 		});
 
 	}
