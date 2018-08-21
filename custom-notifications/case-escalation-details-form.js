@@ -8,7 +8,7 @@ module.exports = {
 			elements: [
 				{
 					field: 'filterField',
-					caption: 'Filter Field',
+					caption: 'filter_field',
 					type: 'picklist',
 					typeOptions: {
 						blankText: 'all',

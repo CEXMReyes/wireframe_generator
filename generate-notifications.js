@@ -25,6 +25,7 @@ function replaceFilterFieldName(data) {
 		.replace(/Filter Field/g, filterField)
 		.replace(/filterField/g, _.camelCase(filterField))
 		.replace(/filterFieldName/g, _.camelCase(filterField + 'Name'))
+		.replace(/filter_field/g, _.snakeCase(filterField));
 		.replace(/filter_fields/g, _.snakeCase(pluralize(filterField)));
 }
 
