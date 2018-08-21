@@ -8,6 +8,7 @@ module.exports = {
 	outDir: './output/',
 	projDir: '<PROJECT_PATH>',
 	customFormsDir:'./custom-forms/',
+	customNotificationsDir:'./custom-notifications/',
 	customTabsDir:'./custom-tabs/',
 	customFormFilesPaths: {
 		'acl.js': function (entityName) {
