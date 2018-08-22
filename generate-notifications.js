@@ -14,6 +14,7 @@ fs.readdir(configGen.customNotificationsDir, function(err, files) {
 			if(_.includes(file, 'form')) filepath = path.join('config', 'form-layouts');
 			if(_.includes(file, 'view')) filepath = path.join('public', 'views', 'settings', 'case-notification');
 			if(_.includes(file, 'hack')) filepath = path.join('public', 'lib');
+			if(_.includes(file, 'picklist')) filepath = path.join('public', 'views', 'settings');
 			if(_.includes(file, 'model')) filepath = path.join('public', 'models');
 			writeToFile(file, replaceFilterFieldName(data), filepath);
 		});

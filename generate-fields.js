@@ -132,6 +132,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'user')) return 'user';
 	if(_.includes(type, 'phone')) return 'phoneNumber';
 	if(_.includes(type, 'num')) return 'number';
+	if(_.includes(type, 'money')) return 'money';
 }
 
 function generatePicklist(listName, list) {
