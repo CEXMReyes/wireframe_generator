@@ -12,13 +12,17 @@ fs.readdir(configGen.customFilterFieldDir, function(err, files) {
 			if (err) console.error(err);
 			var filepath = '.';
 			if(_.includes(file, 'acl') || _.includes(file, 'grids')) filepath = path.join('entities', 'case');
-			if(_.includes(file, 'index')) filepath = path.join('entities', 'user');
 			if(_.includes(file, 'tombstone')) filepath = path.join('public', 'config');
 			if(_.includes(file, 'form')) filepath = path.join('config', 'form-layouts');
 			if(_.includes(file, 'view')) filepath = path.join('public', 'views', 'settings', 'case-notification');
 			if(_.includes(file, 'hack')) filepath = path.join('public', 'lib');
 			if(_.includes(file, 'picklist')) filepath = path.join('public', 'views', 'settings');
 			if(_.includes(file, 'model')) filepath = path.join('public', 'models');
+			if(_.includes(file, 'index')) {
+				if(_.includes(file, 'user')) filepath = path.join('entities', 'user');
+				if(_.includes(file, 'case-field')) filepath = path.join('field-types', 'case');
+				file = 'index.js';
+			}
 			writeToFile(file, replaceFilterFieldName(data), filepath);
 		});
 	});
