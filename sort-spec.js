@@ -19,6 +19,11 @@ fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data)
 
 		process.argv[2] = formType;
 		require('./generate-form.js');
+
+		if(process.argv[3] === 'filter') {
+			process.argv[2] = process.argv[5];
+			require('./generate-filter-field.js');
+		}
 	}
 });
 

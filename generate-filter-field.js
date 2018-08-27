@@ -11,8 +11,9 @@ fs.readdir(configGen.customFilterFieldDir, function(err, files) {
 		fs.readFile(path.join(configGen.customFilterFieldDir, file), 'utf8', function (err, data) {
 			if (err) console.error(err);
 			var filepath = '.';
-			if(_.includes(file, 'acl')) filepath = path.join('entities', 'case');
+			if(_.includes(file, 'acl') || _.includes(file, 'grids')) filepath = path.join('entities', 'case');
 			if(_.includes(file, 'index')) filepath = path.join('entities', 'user');
+			if(_.includes(file, 'tombstone')) filepath = path.join('public', 'config');
 			if(_.includes(file, 'form')) filepath = path.join('config', 'form-layouts');
 			if(_.includes(file, 'view')) filepath = path.join('public', 'views', 'settings', 'case-notification');
 			if(_.includes(file, 'hack')) filepath = path.join('public', 'lib');

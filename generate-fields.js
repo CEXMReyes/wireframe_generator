@@ -215,12 +215,14 @@ function addOptions(option, parents) {
 }
 
 function addDefaultGrids() {
-	if(entityName === 'case') {
-		fs.readFile(path.join(configGen.defDir, 'grids.js'), 'utf8', function (err, data) {
-			if (err) console.error(err);
-			writeToFile('grids.js', data, path.join('entities', entityName));
-		});
-	} else if(entityName === 'party') {
+	// if(entityName === 'case') {
+	// 	fs.readFile(path.join(configGen.defDir, 'grids.js'), 'utf8', function (err, data) {
+	// 		if (err) console.error(err);
+	// 		writeToFile('grids.js', data, path.join('entities', entityName));
+	// 	});
+	// } else
+
+	if(entityName === 'party') {
 		fs.readFile(path.join(configGen.defDir, 'grids-party.js'), 'utf8', function (err, data) {
 			if (err) console.error(err);
 			writeToFile('grids.js', data, path.join('entities', entityName));
