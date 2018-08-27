@@ -22,7 +22,8 @@ module.exports = {
 	defaultCaseFields: [
 		{ field: 'openToClosedCalendarDays', type: 'number', caption: 'Open To Closed Calendar Days', kind: 'system' },
 		{ field: 'openToClosedBusinessDays', type: 'number', caption: 'Open To Closed Business Days', kind: 'system' },
-		{ field: 'dataSource', type: 'textbox', kind: 'hidden' }
+		{ field: 'dataSource', type: 'textbox', kind: 'hidden' },
+		{ field: 'confidential', type: 'yesno', caption: 'Confidential', kind: 'editable' }
 	],
 	defaultResolutionFields: [
 			{ field: 'resolution', type: 'picklist', caption: 'Resolution', typeOptions: { picklistName: 'resolutions' }, kind: 'editable' },
