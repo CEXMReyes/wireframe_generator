@@ -5,12 +5,14 @@ var pluralize = require('pluralize');
 var configGen = require('./config.js');
 var filterField = process.argv[2] ? process.argv[2] : 'Case Type';
 
-fs.readdir(configGen.customNotificationsDir, function(err, files) {
+fs.readdir(configGen.customFilterFieldDir, function(err, files) {
 	if(err) console.error(err);
 	_.forEach(files, function(file) {
-		fs.readFile(path.join(configGen.customNotificationsDir, file), 'utf8', function (err, data) {
+		fs.readFile(path.join(configGen.customFilterFieldDir, file), 'utf8', function (err, data) {
 			if (err) console.error(err);
 			var filepath = '.';
+			if(_.includes(file, 'acl')) filepath = path.join('entities', 'case');
+			if(_.includes(file, 'index')) filepath = path.join('entities', 'user');
 			if(_.includes(file, 'form')) filepath = path.join('config', 'form-layouts');
 			if(_.includes(file, 'view')) filepath = path.join('public', 'views', 'settings', 'case-notification');
 			if(_.includes(file, 'hack')) filepath = path.join('public', 'lib');
@@ -23,11 +25,13 @@ fs.readdir(configGen.customNotificationsDir, function(err, files) {
 
 function replaceFilterFieldName(data) {
 	return data
-		.replace(/Filter Field/g, filterField)
+		.replace(/Filter Field/g, _.startCase(filterField))
+		.replace(/filter field/g, _.startCase(filterField).toLowerCase())
 		.replace(/filterField/g, _.camelCase(filterField))
 		.replace(/filterFieldName/g, _.camelCase(filterField + 'Name'))
 		.replace(/filter_field/g, _.snakeCase(filterField))
-		.replace(/filter_fields/g, _.snakeCase(pluralize(filterField)));
+		.replace(/filter_fields/g, _.snakeCase(pluralize(filterField)))
+		.replace(/userFilterFields/g, _.camelCase('user ' + filterField));
 }
 
 function writeToFile(fileName, content, filepath) {

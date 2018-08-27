@@ -6,10 +6,10 @@ module.exports = {
 	defDir: './defaults',
 	inDir: './input/',
 	outDir: './output/',
-	projDir: '<PROJECT_PATH>',
-	customFormsDir:'./custom-forms/',
-	customNotificationsDir:'./custom-notifications/',
-	customTabsDir:'./custom-tabs/',
+	projDir: '<PROJECT_DIR>',
+	customFormsDir:'./custom-form/',
+	customFilterFieldDir:'./custom-filter-field/',
+	customTabsDir:'./custom-tab/',
 	customFormFilesPaths: {
 		'acl.js': function (entityName) {
 			return path.join('entities', entityName)

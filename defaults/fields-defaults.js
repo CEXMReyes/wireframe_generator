@@ -14,6 +14,7 @@ module.exports = {
 		'module.exports = BBModel.extend(',
 	indexFooter: {
 		acl: 'require(\'./acl.js\')',
+		aclEs: 'require(\'./acl-es.js\')',
 		grids: 'require(\'./grids.js\')',
 		rules: 'require(\'./rules.js\')',
 		validation: 'require(\'./validation.js\')'
