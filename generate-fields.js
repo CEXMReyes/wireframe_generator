@@ -50,7 +50,7 @@ function generateIndex(data) {
 		indexHeader = fieldsDefaults.customHeader;
 		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
-		writeToFile('sys_' + _.snakeCase(entityName) + '.js', generateCustomController(), path.join('config', 'custom-forms'));
+		writeToFile('sys_' + _.camelCase(entityName) + '.js', generateCustomController(), path.join('config', 'custom-forms'));
 		writeToFile(_.kebabCase(entityName) + '-model.js', generateModel(), path.join('public', 'models'));
 		writeToFile('grids.js', generateGrids(), path.join('entities', _.camelCase(entityName)));
 	} else {
