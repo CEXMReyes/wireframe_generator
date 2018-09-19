@@ -38,7 +38,7 @@
   <hr>
 </div>
 <div class="print-only">
-  <span style="font-weight: bold; border-left: 5px #999 solid; padding-left: 10px;"><span>{@resource key="entity" /}</span>&nbsp;&#124;&nbsp;<span class="green-font">{model.caseId__caseNumber}</span>&nbsp;&#47;&nbsp;<span>{model.id}</span></span>
+  <span style="font-weight: bold; border-left: 5px #999 solid; padding-left: 10px;"><span>{@resource key="entity_name" /}</span>&nbsp;&#124;&nbsp;<span class="green-font">{model.caseId__caseNumber}</span>&nbsp;&#47;&nbsp;<span>{model.id}</span></span>
 </div>
 
 <!-- See the related 'xxxx-form.js' file rendering details. -->

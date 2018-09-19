@@ -14,10 +14,9 @@ module.exports = {
 		'acl.js': function (entityName) {
 			return path.join('entities', entityName)
 		},
-		'entity-details-tmpl.dust': 'public/templates/custom-forms',
-		'entity-tmpl.dust': 'public/templates/custom-forms',
-		'entity-details-view.js': 'public/views/custom-forms',
-		'new-entity-tmpl.dust': 'public/templates/custom-forms'
+		'entity-name-details-tmpl.dust': 'public/templates/custom-forms',
+		'entity-name-details-view.js': 'public/views/custom-forms',
+		'new-entity-name-tmpl.dust': 'public/templates/custom-forms'
 	},
 	customTabFilesPaths: {
 		'options.case-details-tabs-ex.js': 'public/config',

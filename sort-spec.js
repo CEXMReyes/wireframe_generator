@@ -11,7 +11,7 @@ fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data)
 
 	if(run) {
 		var formType = process.argv[3] || null;
-		var entityType = formType ? (formType.split('-'))[0] : null;
+		var entityType = formType ? (formType.split('-').slice(0,-1).join('-')) : null;
 		process.argv[3] = process.argv[4];
 
 		process.argv[2] = entityType;

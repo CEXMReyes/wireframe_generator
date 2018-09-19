@@ -35,14 +35,14 @@ module.exports = permHelper.initialize()
 	})
 	.requireCaseInheritance()
 	.required({
-		name: 'View Entity',
-		roles: ['view_entity'],
+		name: 'View Entity Name',
+		roles: ['view_entity_name'],
 		actions: ['load', 'list'],
 		conditions: []
 	})
 	.required({
-		name: 'Create Entity',
-		roles: ['create_entity'],
+		name: 'Create Entity Name',
+		roles: ['create_entity_name'],
 		actions: ['save_new', 'save_existing'],
 		conditions: [{
 			attributes: {
@@ -51,8 +51,8 @@ module.exports = permHelper.initialize()
 		}]
 	})
 	.required({
-		name: 'Edit Entity',
-		roles: ['edit_entity'],
+		name: 'Edit Entity Name',
+		roles: ['edit_entity_name'],
 		actions: ['save_new', 'save_existing'],
 		conditions: {
 			attributes: {
@@ -61,8 +61,8 @@ module.exports = permHelper.initialize()
 		}
 	})
 	.required({
-		name: 'Remove Entity',
-		roles: ['remove_entity'],
+		name: 'Remove Entity Name',
+		roles: ['remove_entity_name'],
 		actions: ['remove'],
 		conditions: []
 	})

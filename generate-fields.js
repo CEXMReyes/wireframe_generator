@@ -16,11 +16,12 @@ if(isCustom) {
 
 				var filepath;
 				if (file === 'acl.js') {
-					filepath = configGen.customFormFilesPaths[file](entityName);
+					filepath = configGen.customFormFilesPaths[file](_.camelCase(entityName));
 				} else {
 					filepath = configGen.customFormFilesPaths[file];
 				}
-				writeToFile(file.replace('entity', entityName), replaceEntityName(data), filepath);
+				writeToFile(file.replace('entity-name', _.kebabCase(entityName)),
+					replaceEntityName(data), filepath);
 			});
 		});
 	});
@@ -31,7 +32,7 @@ fs.readFile(path.join(configGen.inDir, 'fields.txt'), 'utf8', function (err, dat
 	var input = _.map(data.split('\n'), function (item) {
 		return item.split('\t');
 	});
-	writeToFile('index.js', generateIndex(input), path.join('entities', entityName));
+	writeToFile('index.js', generateIndex(input), path.join('entities', _.camelCase(entityName)));
 });
 
 // Variables
@@ -49,9 +50,9 @@ function generateIndex(data) {
 		indexHeader = fieldsDefaults.customHeader;
 		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
-		writeToFile('sys_' + entityName + '.js', generateCustomController(), path.join('config', 'custom-forms'));
-		writeToFile(entityName + '-model.js', generateModel(), path.join('public', 'models'));
-		writeToFile('grids.js', generateGrids(), path.join('entities', entityName));
+		writeToFile('sys_' + _.snakeCase(entityName) + '.js', generateCustomController(), path.join('config', 'custom-forms'));
+		writeToFile(_.kebabCase(entityName) + '-model.js', generateModel(), path.join('public', 'models'));
+		writeToFile('grids.js', generateGrids(), path.join('entities', _.camelCase(entityName)));
 	} else {
 		if(entityName === 'case') {
 			fields = _.concat(fieldsDefaults.defaultCaseFields, fields,
@@ -156,21 +157,21 @@ function generateRadios(radios) {
 
 function generateCustomController() {
 	return {
-		formName: entityName,
+		formName: _.camelCase(entityName),
 		entity: {
 			base: 'sys',
-			name: entityName
+			name: _.camelCase(entityName)
 		},
-		view: entityName + '-details-view.js',
-		model: entityName + '-model.js',
-		gridName: 'main-' + entityName,
-		caseGridName: 'case-' + entityName
+		view: _.kebabCase(entityName) + '-details-view.js',
+		model: _.kebabCase(entityName) + '-model.js',
+		gridName: 'main-' + _.kebabCase(entityName),
+		caseGridName: 'case-' + _.kebabCase(entityName)
 	};
 }
 
 function generateGrids() {
 	var gridObj = {};
-	gridObj['main-' + entityName] = {
+	gridObj['main-' + _.kebabCase(entityName)] = {
 		sortColumn: 'childNumber',
 		sortOrder: 'desc',
 		columns: [
@@ -178,7 +179,7 @@ function generateGrids() {
 			{ field: 'createdDate' }
 		]
 	};
-	gridObj['case-' + entityName] = {
+	gridObj['case-' + _.kebabCase(entityName)] = {
 		sortColumn: 'number',
 		sortOrder: 'desc',
 		columns: [
@@ -191,10 +192,10 @@ function generateGrids() {
 
 function generateModel() {
 	return {
-		urlRoot: '$appData.globalConfig.apiRoot + ' + '\'/' + entityName + '\'',
+		urlRoot: '$appData.globalConfig.apiRoot + ' + '\'/' + _.camelCase(entityName) + '\'',
 		entity: {
 			base: 'sys',
-			name: entityName
+			name: _.camelCase(entityName)
 		},
 		idAttribute: 'id'
 	};
@@ -225,7 +226,7 @@ function addDefaultGrids() {
 	if(entityName === 'party') {
 		fs.readFile(path.join(configGen.defDir, 'grids-party.js'), 'utf8', function (err, data) {
 			if (err) console.error(err);
-			writeToFile('grids.js', data, path.join('entities', entityName));
+			writeToFile('grids.js', data, path.join('entities', _.camelCase(entityName)));
 		});
 	}
 }
@@ -270,10 +271,14 @@ function modelFormat(data) {
 
 function replaceEntityName(data) {
 	return data
-		.replace(/entity/g, entityName)
-		.replace(/Entity/g, capitalize(entityName))
-		.replace(/entities/g, pluralize(entityName))
-		.replace(/Entities/g, pluralize(capitalize(entityName)));
+		.replace(/entityName/g, _.camelCase(entityName))
+		.replace(/entityNames/g, pluralize(_.camelCase(entityName)))
+		.replace(/entity_name/g, _.snakeCase(entityName))
+		.replace(/entity_names/g, pluralize(_.snakeCase(entityName)))
+		.replace(/entity-name/g, _.kebabCase(entityName))
+		.replace(/entity-names/g, pluralize(_.kebabCase(entityName)))
+		.replace(/Entity Name/g, _.startCase(entityName))
+		.replace(/Entity Names/g, pluralize(_.startCase(entityName)));
 }
 
 function capitalize(data) {

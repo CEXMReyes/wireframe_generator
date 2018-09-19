@@ -1,21 +1,21 @@
 var BBFView = require('isight/public/lib/backbone-form-view.js');
 var utils = require('isight/public/lib/utils.js');
-var entityModel = require('../../models/entity-model.js');
+var entityNameModel = require('../../models/entity-name-model.js');
 require('isight/public/lib/jquery.sticky.js');
 
 module.exports = BBFView.extend({
-	urlRoot: '/entity',
-	Model: entityModel,
-	formConfigName: 'entity-details',
+	urlRoot: '/entityName',
+	Model: entityNameModel,
+	formConfigName: 'entity-name-details',
 	// List of features to manually enable for this view.
 	features: {
 		readOnlyFields: true
 	},
 	template: function () {
 		if (this.model.isNew()) {
-			return require('../../templates/custom-forms/new-entity-tmpl.dust');
+			return require('../../templates/custom-forms/new-entity-name-tmpl.dust');
 		} else {
-			return require('../../templates/custom-forms/entity-details-tmpl.dust');
+			return require('../../templates/custom-forms/entity-name-details-tmpl.dust');
 		}
 	},
 	/***
@@ -42,12 +42,12 @@ module.exports = BBFView.extend({
 				url: '/case/' + this.model.get('caseId')
 			});
 			crumbs.push({
-				title: utils.translateKey('entity'),
-				url: '/case/' + this.model.get('caseId') + '/activity/entity'
+				title: utils.translateKey('entity_name'),
+				url: '/case/' + this.model.get('caseId') + '/activity/entityName'
 			});
 		} else {
 			crumbs.push({
-				title: utils.translateKey('entity'),
+				title: utils.translateKey('entity_name'),
 				url: '/entities'
 			});
 		}

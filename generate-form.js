@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var configGen = require('./config.js');
 var formName = process.argv[2] ? process.argv[2] : 'case-capture';
-var entityName = (_.split(formName, '-'))[0];
+var entityName = formName.split('-').slice(0,-1).join('-');
 var isTab = process.argv[3] === 'tab';
 
 // Run
@@ -25,8 +25,8 @@ fs.readFile(path.join(configGen.inDir, 'form.txt'), 'utf8', function (err, data)
 		return item.split('\t');
 	});
 	writeToFile(formName + '-form.js', generateForm(input), path.join('config', 'form-layouts'));
-	writeToFile('rules.js', rules, path.join('entities', entityName));
-	writeToFile('validation.js', validation, path.join('entities', entityName));
+	writeToFile('rules.js', rules, path.join('entities', _.camelCase(entityName)));
+	writeToFile('validation.js', validation, path.join('entities', _.camelCase(entityName)));
 });
 
 // Variables

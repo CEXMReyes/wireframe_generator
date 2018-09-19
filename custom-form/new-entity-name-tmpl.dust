@@ -21,9 +21,9 @@
 </div>
 
 {#model.id}
-	<h1>{@resource key="edit_entity" /}</h1>
+	<h1>{@resource key="edit_entity_name" /}</h1>
 {:else}
-	<h1>{@resource groupName="sys/entity" subgroupName="general" key="new"/}</h1>
+	<h1>{@resource groupName="sys/entityName" subgroupName="general" key="new"/}</h1>
 {/model.id}
 
 <hr>
