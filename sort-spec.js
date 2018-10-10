@@ -5,6 +5,15 @@ var Papa = require('papaparse');
 var configGen = require('./config.js');
 var run = process.argv[2] === 'run';
 
+/*
+
+	Example Commands:
+
+	node sort-spec run case-overview filter caseType
+
+
+*/
+
 fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data) {
 	if (err) console.error(err);
 	sortColumns(data);

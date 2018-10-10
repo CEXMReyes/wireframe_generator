@@ -2,6 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
+var Papa = require('papaparse');
 var configGen = require('./config.js');
 
 // Run
@@ -24,7 +25,8 @@ function generatePickLists(listOfLists) {
 		var nextItem = list;
 		if(listOfLists[0].length === list.length) {
 			nextItem = list.slice(0, list.length - 1);
-			var listOfItems = hasParent ? list[list.length - 1].split(',') : [list[list.length - 1]];
+			var listOfItems = hasParent ? Papa.parse(list[list.length -1],
+				{ delimiter: ',' }).data[0] : [list[list.length - 1]];
 
 			_.forEach(listOfItems, function(item) {
 				var listItem = {
