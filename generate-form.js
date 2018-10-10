@@ -69,7 +69,9 @@ function generateForm(listOfLists) {
 	}, []);
 
 	if(formName === 'case-overview') {
-		output = formDefaults.caseOverviewHeader.concat(output);
+		output = formDefaults.caseOverviewHeader
+			.concat(output)
+			.concat(formDefaults.caseOverviewFooter);
 	} else if(!_.includes(formName, 'case')) {
 		output = formDefaults.childHeader.concat(output);
 		if(formName === 'party-details') output[0].typeOptions = formDefaults.partyTypeOptions;
@@ -125,9 +127,11 @@ function rulesFormat(data) {
 	return JSON.stringify(data, null, '\t')
 		.replace(/: {/g, ": function (data) {")
 		.replace(/function_header_truthy/g, "return !!data.")
+		.replace(/function_header_confidential/g, "return ")
 		.replace(/function_header/g, "return data.")
 		.replace(/"/g, "")
-		.replace(/data.: /g, "data.");
+		.replace(/data.: /g, "data.")
+		.replace(/return : /g, "return ");
 }
 
 function formFormat(data) {

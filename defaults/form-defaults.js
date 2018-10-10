@@ -14,6 +14,10 @@ module.exports = {
 		{ field: 'dateAssigned', readOnly: true },
 		{ field: 'reopenDate', readOnly: true, displayRule: 'wasReopened' }
 	],
+	caseOverviewFooter: [
+		{ type: 'section', caption: 'confidential',
+			elements: [{ field: 'confidential' }], displayRule: 'canViewConfidential' }
+	],
 	caseResolutionFooter: [
 		{ field: 'resolution' },
 		{ field: 'resolutionSummaryNote' },
@@ -22,7 +26,10 @@ module.exports = {
 		{ field: 'reopenReason', readOnly: true, displayRule: 'wasReopened' }
 	],
 	caseRulesDefaults: {
-		wasReopened: { function_header_truthy: 'reopenDate && data.caseStatus === \'open\';' }
+		wasReopened: { function_header_truthy: 'reopenDate && data.caseStatus === \'open\';' },
+		canViewConfidential: { function_header_confidential: 'typeof $appData !== \'undefined\' && ' +
+			'($appData.user.viewConfidential === true || ' +
+			'$appData.user.viewConfidential === \'true\');' }
 	},
 	childHeader: [
 		{
