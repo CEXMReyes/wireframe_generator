@@ -125,13 +125,16 @@ function handleRule(data) {
 
 function rulesFormat(data) {
 	return JSON.stringify(data, null, '\t')
+		.replace(/canViewConfidential: {/g, "canViewConfidential: function () {")
 		.replace(/: {/g, ": function (data) {")
 		.replace(/function_header_truthy/g, "return !!data.")
 		.replace(/function_header_confidential/g, "return ")
 		.replace(/function_header/g, "return data.")
 		.replace(/"/g, "")
 		.replace(/data.: /g, "data.")
-		.replace(/return : /g, "return ");
+		.replace(/return : /g, "return ")
+		.replace(/&& /g, "&&\n\t\t\t")
+		.replace(/\|\| /g, "||\n\t\t\t");
 }
 
 function formFormat(data) {
@@ -165,7 +168,10 @@ function writeToFile(fileName, content, filepath) {
 		if(formName === 'case-resolution') content.elements = content.elements.concat(formDefaults.caseResolutionFooter);
 		output += formFormat(_.assign({ name: formName }, content)) + ';';
 	} else if(fileName == 'rules.js') {
-		if(_.includes(formName, 'case')) content = _.defaults(content, formDefaults.caseRulesDefaults);
+		if(_.includes(formName, 'case')) {
+			output = '/* global $appData */\n\n' + output;
+			content = _.defaults(content, formDefaults.caseRulesDefaults);
+		}
 		output += rulesFormat(content) + ';';
 	} else if(fileName == 'validation.js') {
 		output += formFormat(content) + ';';
