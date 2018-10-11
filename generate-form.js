@@ -125,7 +125,6 @@ function handleRule(data) {
 
 function rulesFormat(data) {
 	return JSON.stringify(data, null, '\t')
-		.replace(/canViewConfidential: {/g, "canViewConfidential: function () {")
 		.replace(/: {/g, ": function (data) {")
 		.replace(/function_header_truthy/g, "return !!data.")
 		.replace(/function_header_confidential/g, "return ")
@@ -134,7 +133,9 @@ function rulesFormat(data) {
 		.replace(/data.: /g, "data.")
 		.replace(/return : /g, "return ")
 		.replace(/&& /g, "&&\n\t\t\t")
-		.replace(/\|\| /g, "||\n\t\t\t");
+		.replace(/\|\| /g, "||\n\t\t\t")
+		.replace(/canViewConfidential: function \(data\) {/g,
+			"canViewConfidential: function () {");
 }
 
 function formFormat(data) {
