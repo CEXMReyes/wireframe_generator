@@ -31,12 +31,11 @@ function generatePickLists(listOfLists) {
 			_.forEach(listOfItems, function(item) {
 				var listItem = {
 					name: listName,
-					value: _.snakeCase(item),
-					caption: item.trim()
+					value: item.trim()
 				};
 				if(hasParent) {
 					listItem.parents = _.map(nextItem, function(parentItem) {
-						return _.snakeCase(parentItem);
+						return parentItem.trim();
 					});
 				}
 				acc.push(listItem);
