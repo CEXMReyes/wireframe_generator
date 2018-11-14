@@ -140,8 +140,7 @@ function generatePicklist(listName, list) {
 	return _.map(list.split(','), function(item) {
 		return {
 			name: listName,
-			value: _.snakeCase(item),
-			caption: item.trim()
+			value: item.trim()
 		};
 	});
 }

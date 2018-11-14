@@ -93,7 +93,7 @@ function generateRules(data) {
 function addRule(field, rule, value) {
 	rules[rule] =  rules[rule] ?
 		rules[rule] :
-		{ function_header: _.camelCase(field) + ' === \'' + _.snakeCase(value) + '\';' };
+		{ function_header: _.camelCase(field) + ' === \'' + value.trim() + '\';' };
 }
 
 function addValidation(childField, displayRule) {
