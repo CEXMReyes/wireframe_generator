@@ -15,7 +15,7 @@ module.exports = [
 	original[0],
 	{
 		id: 'halfName',
-		caption: 'HalfName',
+		caption: 'half_name',
 		View: TabNameView
 	},
 	original[1]

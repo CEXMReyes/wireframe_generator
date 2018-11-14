@@ -96,6 +96,10 @@ module.exports = {
 		value: 'value',
 		static: true
 	},
+	'purge_reasons': {
+		text: 'value',
+		value: 'value'
+	},
 	'reassign_reasons': {
 		text: 'value',
 		value: 'value'
