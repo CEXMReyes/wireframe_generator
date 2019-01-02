@@ -25,8 +25,8 @@ fs.readFile(path.join(configGen.inDir, 'form.txt'), 'utf8', function (err, data)
 		return item.split('\t');
 	});
 	writeToFile(formName + '-form.js', generateForm(input), path.join('config', 'form-layouts'));
-	writeToFile('rules.js', rules, path.join('entities', _.camelCase(entityName)));
-	writeToFile('validation.js', validation, path.join('entities', _.camelCase(entityName)));
+	writeToFile('rules.js', rules, path.join('entities', _.camelCase(entityName).toLowerCase()));
+	writeToFile('validation.js', validation, path.join('entities', _.camelCase(entityName).toLowerCase()));
 });
 
 // Variables

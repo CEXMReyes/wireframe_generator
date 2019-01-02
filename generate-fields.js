@@ -16,7 +16,7 @@ if(isCustom) {
 
 				var filepath;
 				if (file === 'acl.js') {
-					filepath = configGen.customFormFilesPaths[file](_.camelCase(entityName));
+					filepath = configGen.customFormFilesPaths[file](_.camelCase(entityName).toLowerCase());
 				} else {
 					filepath = configGen.customFormFilesPaths[file];
 				}
@@ -32,7 +32,7 @@ fs.readFile(path.join(configGen.inDir, 'fields.txt'), 'utf8', function (err, dat
 	var input = _.map(data.split('\n'), function (item) {
 		return item.split('\t');
 	});
-	writeToFile('index.js', generateIndex(input), path.join('entities', _.camelCase(entityName)));
+	writeToFile('index.js', generateIndex(input), path.join('entities', _.camelCase(entityName).toLowerCase()));
 });
 
 // Variables
@@ -50,9 +50,9 @@ function generateIndex(data) {
 		indexHeader = fieldsDefaults.customHeader;
 		index = fieldsDefaults.defaultCustomOptions(entityName);
 		index.fields = fields;
-		writeToFile('sys_' + _.camelCase(entityName) + '.js', generateCustomController(), path.join('config', 'custom-forms'));
+		writeToFile('sys_' + _.camelCase(entityName).toLowerCase() + '.js', generateCustomController(), path.join('config', 'custom-forms'));
 		writeToFile(_.kebabCase(entityName) + '-model.js', generateModel(), path.join('public', 'models'));
-		writeToFile('grids.js', generateGrids(), path.join('entities', _.camelCase(entityName)));
+		writeToFile('grids.js', generateGrids(), path.join('entities', _.camelCase(entityName).toLowerCase()));
 	} else {
 		if(entityName === 'case') {
 			fields = _.concat(fieldsDefaults.defaultCaseFields, fields,
@@ -134,6 +134,7 @@ function correctTypeName(type) {
 	if(_.includes(type, 'phone')) return 'phoneNumber';
 	if(_.includes(type, 'num')) return 'number';
 	if(_.includes(type, 'money')) return 'money';
+	if(_.includes(type, 'party')) return 'party-search';
 }
 
 function generatePicklist(listName, list) {
@@ -156,10 +157,10 @@ function generateRadios(radios) {
 
 function generateCustomController() {
 	return {
-		formName: _.camelCase(entityName),
+		formName: _.camelCase(entityName).toLowerCase(),
 		entity: {
 			base: 'sys',
-			name: _.camelCase(entityName)
+			name: _.camelCase(entityName).toLowerCase()
 		},
 		view: _.kebabCase(entityName) + '-details-view.js',
 		model: _.kebabCase(entityName) + '-model.js',
@@ -191,10 +192,10 @@ function generateGrids() {
 
 function generateModel() {
 	return {
-		urlRoot: '$appData.globalConfig.apiRoot + ' + '\'/' + _.camelCase(entityName) + '\'',
+		urlRoot: '$appData.globalConfig.apiRoot + ' + '\'/' + _.camelCase(entityName).toLowerCase() + '\'',
 		entity: {
 			base: 'sys',
-			name: _.camelCase(entityName)
+			name: _.camelCase(entityName).toLowerCase()
 		},
 		idAttribute: 'id'
 	};
@@ -225,7 +226,7 @@ function addDefaultGrids() {
 	if(entityName === 'party') {
 		fs.readFile(path.join(configGen.defDir, 'grids-party.js'), 'utf8', function (err, data) {
 			if (err) console.error(err);
-			writeToFile('grids.js', data, path.join('entities', _.camelCase(entityName)));
+			writeToFile('grids.js', data, path.join('entities', _.camelCase(entityName).toLowerCase()));
 		});
 	}
 }
@@ -270,8 +271,8 @@ function modelFormat(data) {
 
 function replaceEntityName(data) {
 	return data
-		.replace(/entityName/g, _.camelCase(entityName))
-		.replace(/entityNames/g, pluralize(_.camelCase(entityName)))
+		.replace(/entityName/g, _.camelCase(entityName).toLowerCase())
+		.replace(/entityNames/g, pluralize(_.camelCase(entityName).toLowerCase()))
 		.replace(/entity_name/g, _.snakeCase(entityName))
 		.replace(/entity_names/g, pluralize(_.snakeCase(entityName)))
 		.replace(/entity-name/g, _.kebabCase(entityName))

@@ -4,7 +4,7 @@ var pluralize = require('pluralize');
 module.exports = {
 	indexHeader: function(entityName) {
 		return 'var extend = require(\'isight/entities/extend.js\');\n' +
-		'var parentEnt = require(\'isight/entities/' + _.camelCase(entityName) + '\');\n\n' +
+		'var parentEnt = require(\'isight/entities/' + _.camelCase(entityName).toLowerCase() + '\');\n\n' +
 		'module.exports = extend(parentEnt, ';
 	},
 	customHeader: 'var extend = require(\'isight/entities/extend.js\');\n' +
@@ -33,8 +33,8 @@ module.exports = {
 	defaultCustomOptions: function(entityName) {
 		return {
 			db: 'default',
-			table: 'sys_' + _.camelCase(entityName),
-			entity: { base: 'sys', name: _.camelCase(entityName) },
+			table: 'sys_' + _.camelCase(entityName).toLowerCase(),
+			entity: { base: 'sys', name: _.camelCase(entityName).toLowerCase() },
 			caption: _.startCase(entityName),
 			captionPlural: pluralize(_.startCase(entityName)),
 			addCaption: 'Add ' + _.startCase(entityName),
