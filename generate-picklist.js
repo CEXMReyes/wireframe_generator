@@ -26,7 +26,7 @@ function generatePickLists(listOfLists) {
 		if(listOfLists[0].length === list.length) {
 			nextItem = list.slice(0, list.length - 1);
 			var listOfItems = hasParent ? Papa.parse(list[list.length -1],
-				{ delimiter: ',' }).data[0] : [list[list.length - 1]];
+				{ delimiter: ', ' }).data[0] : [list[list.length - 1]];
 
 			_.forEach(listOfItems, function(item) {
 				var listItem = {

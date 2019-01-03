@@ -2,6 +2,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var pluralize = require('pluralize');
+var Papa = require('papaparse');
 var configGen = require('./config.js');
 var entityName = process.argv[2] ? process.argv[2] : 'case';
 var isCustom = process.argv[3] === 'custom';
@@ -96,7 +97,7 @@ function generateFields(listOfLists) {
 			if(configGen.generateBlankLists) {
 				picklistData = list[2] || _.map(new Array(3), function(item, key) {
 					return pluralize.singular(_.startCase(picklistName)) + ' ' + (key + 1);
-				}).join(',');
+				}).join(', ');
 			} else {
 				picklistData = list[2];
 			}
@@ -138,17 +139,20 @@ function correctTypeName(type) {
 }
 
 function generatePicklist(listName, list) {
-	return _.map(list.split(','), function(item) {
-		return {
-			name: listName,
-			value: item.trim()
-		};
-	});
+	return _.map(
+		Papa.parse(list, { delimiter: ', ' }).data[0],
+		function(item) {
+			return {
+				name: listName,
+				value: item.trim()
+			};
+		}
+	);
 }
 
 function generateRadios(radios) {
 	return {
-		radios: _.map(radios.split(','), function (item) {
+		radios: _.map(radios.split(', '), function (item) {
 			return { value: _.snakeCase(item), caption: _.snakeCase(item) };
 		}),
 		orientation: 'horizontal'
