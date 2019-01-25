@@ -23,6 +23,8 @@ module.exports = {
 		'tab-name-tmpl.dust': 'public/templates/case',
 		'tab-name-view.js': 'public/views/case'
 	},
+	sortPicklist: false,
+	rankPicklist: false,
 	picklistOtherValues: [
 		'Other',
 		'N/A'

@@ -5,8 +5,16 @@ var pluralize = require('pluralize');
 var Papa = require('papaparse');
 var configGen = require('./config.js');
 
-var sortList = process.env.SORT === 'true';
-var rankList = process.env.RANK === 'true';
+var sortList = configGen.sortPicklist;
+var rankList = configGen.rankPicklist;
+
+if (process.env.SORT) {
+	sortList = process.env.SORT === 'true';
+}
+
+if (process.env.RANK) {
+	rankList = process.env.RANK === 'true';
+}
 
 // Run
 fs.readFile(path.join(configGen.inDir, 'picklists.txt'), 'utf8', function(err, data) {
