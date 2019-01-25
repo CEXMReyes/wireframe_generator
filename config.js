@@ -22,5 +22,9 @@ module.exports = {
 		'options.case-details-tabs-ex.js': 'public/config',
 		'tab-name-tmpl.dust': 'public/templates/case',
 		'tab-name-view.js': 'public/views/case'
-	}
+	},
+	picklistOtherValues: [
+		'Other',
+		'N/A'
+	]
 }

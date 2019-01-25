@@ -5,6 +5,9 @@ var pluralize = require('pluralize');
 var Papa = require('papaparse');
 var configGen = require('./config.js');
 
+var sortList = process.env.SORT === 'true';
+var rankList = process.env.RANK === 'true';
+
 // Run
 fs.readFile(path.join(configGen.inDir, 'picklists.txt'), 'utf8', function(err, data) {
 	if (err) console.error(err);
@@ -45,6 +48,15 @@ function generatePickLists(listOfLists) {
 		return acc;
 	}, []);
 
+	if (sortList) {
+		output = sortOutput(output);
+	} else {
+		// Sort handles its own ranking
+		if (rankList) {
+			output = addRankToList(output);
+		}
+	}
+
 	writeToFile(listName + '.json', output);
 	if(hasParent) generatePickLists(nextList);
 }
@@ -78,6 +90,61 @@ function arrayEquals(a, b) {
 	if(a.length !== b.length) return false;
 	return _.every(a, function(value, key) {
 		return value.trim() === b[key].trim();
+	});
+}
+
+function sortOutput(output) {
+	output = _.orderBy(output, ['parents', 'value']);
+
+	// Separate output into different arrays based on parents
+	var separatedValues = _.reduce(output, function(acc, value) {
+		if (!value.parents) {
+			acc.noParent.push(value);
+			return acc;
+		}
+
+		if (!acc[value.parents]) {
+			acc[value.parents] = [];
+		}
+		acc[value.parents].push(value);
+
+		return acc;
+	}, { noParent: [] });
+
+	// Move other values to the bottom of each list
+	separatedValues = _.map(separatedValues, function(miniList) {
+		var removedValues = [];
+		var filteredList = _.reduce(miniList, function(acc, item) {
+			if (configGen.picklistOtherValues.includes(item.value)) {
+				removedValues.push(item);
+				return acc;
+			}
+
+			acc.push(item);
+			return acc;
+		}, []);
+
+		// Add removed values back at the bottom
+		var combinedList = filteredList.concat(removedValues);
+
+		if (rankList) {
+			combinedList = addRankToList(combinedList);
+		}
+
+		return combinedList;
+	});
+
+	var result = _.reduce(separatedValues, function(acc, miniList) {
+		return acc.concat(miniList);
+	}, []);
+
+	return result;
+}
+
+function addRankToList(list) {
+	return _.map(list, function(item, index) {
+		item.rank = index + 1;
+		return item;
 	});
 }
 
