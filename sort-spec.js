@@ -80,7 +80,7 @@ function sortColumns(data) {
 function writeToFile(content, fileName) {
 	var file = fs.createWriteStream(path.join(configGen.inDir, fileName));
 	file.write(content, 'utf8', function(err) {
-		if(err) logger.error(err);
+		if(err) console.error(err);
 		file.end();
 	});
 }
