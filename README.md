@@ -1,6 +1,6 @@
-# Wireframe Generator 3.x
+# Wireframe Generator 3.x - 4.x
 
-A collection of scripts to generate 3.x wireframing files. A proper UI will come eventually
+A collection of scripts to generate 3.x - 4.x wireframing files. A proper UI will come eventually
 
 ## Getting Started
 
@@ -16,6 +16,45 @@ Make sure a folder named **output** exists in the root directory, this is where 
 Clone repo, then run npm install.
 
 ## Using the Scripts
+
+### sort-spec.js
+
+Run **node sort-spec.js** [formName, customFlag]
+
+Script will run both **generate-fields.js** and **generate-form.js** from a single field spec. You can specify the form/entity name and denote whether you are generating a case tab, a custom child doc, or specifying the filter field.
+
+**Example:**
+  * **node sort-spec.js case-overview**
+  * **node sort-spec.js case-resolution tab**
+  * **node sort-spec.js party-details**
+  * **node sort-spec.js interview-details custom**
+  * **node sort-spec.js case-overview filter department**
+
+**Generates:**
+  * **wireframe for case with case overview form**
+  * **wireframe for case with case resolution form and tab**
+  * **wireframe for party with party details form**
+  * **wireframe for interview child doc with views, model, and form**
+  * **wireframe for case with case overview form with filter field set to department (Escalations, Notifications, ACL, etc.)**
+
+Using the scripts below, can generate all files for a wireframe based on a formatted field spec. Paste in field spec in **spec.txt**. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. The **&#35;** character can be used to mark the start of a section or denote a picklist which is dependant on another field. Format is as follows:
+
+Field Name | Type | Validation | Display Rules | TypeOptions (Picklists, Radios)
+--- | --- | --- | --- | --- 
+Department | Dropdown | *
+Case Type | Dropdown | * | | &#35; Department
+Sub Case Type | Dropdown | | | &#35; Department, Case Type
+Initial Contact Date | Date Picker | *
+Incident Date | Date Picker | *
+Incident Location | Dropdown
+Reporting Channel | Multipick | * | | Email, Phone, Web Form, In Person, Social Media, Other
+Urgency | Dropdown | * | | Low, Medium, High
+&#35;&#35;&#35; Title IX Information
+Primary Basis of Discrimination | Dropdown | | Department = Title IX | Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Secondary Basis of Discrimination | Dropdown | | Department = Title IX | Age, Citizen Status, Disability, Gender, Gender Identity, National Origin, Pregnancy, Race, Religion, Sex, Sexual Orientation, Veteran status, Ethnicity, Medical History, Other
+Clery Report Filed? | Radio Button | | Department = Title IX	Yes, No
+&#35;&#35;
+
 
 ### generate-fields.js
 
@@ -67,7 +106,7 @@ Supports creation of sections, using **###** as a flag dentote the start of the 
 
 Paste input in the **form.txt** file. Columns are separated by TABS, similar to when pasting from an Excel file into a text editor. Format is as follows:
 
-Field Name | Type | TypeOptions (Picklists, Radios)
+Field Name | Validation | Display Rules
 --- | --- | ---
 Counsel Name | Legal Involved = Yes | Legal Involved = Yes
 Assistance Program | Case Type = Alcohol/Drugs OR Substance Abuse | Case Type = Alcohol/Drugs OR Substance Abuse
