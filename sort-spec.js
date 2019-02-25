@@ -3,7 +3,6 @@ var fs = require('fs');
 var path = require('path');
 var Papa = require('papaparse');
 var configGen = require('./config.js');
-var run = process.argv[2] === 'run';
 
 /*
 
@@ -18,21 +17,18 @@ fs.readFile(path.join(configGen.inDir, 'spec.txt'), 'utf8', function (err, data)
 	if (err) console.error(err);
 	sortColumns(data);
 
-	if(run) {
-		var formType = process.argv[3] || null;
-		var entityType = formType ? (formType.split('-').slice(0,-1).join('-')) : null;
-		process.argv[3] = process.argv[4];
+	var formType = process.argv[2] || null;
+	var entityType = formType ? (formType.split('-').slice(0,-1).join('-')) : null;
 
-		process.argv[2] = entityType;
-		require('./generate-fields.js');
+	process.argv[2] = entityType;
+	require('./generate-fields.js');
 
-		process.argv[2] = formType;
-		require('./generate-form.js');
+	process.argv[2] = formType;
+	require('./generate-form.js');
 
-		if(process.argv[3] === 'filter') {
-			process.argv[2] = process.argv[5];
-			require('./generate-filter-field.js');
-		}
+	if(process.argv[3] === 'filter') {
+		process.argv[2] = process.argv[4];
+		require('./generate-filter-field.js');
 	}
 });
 
