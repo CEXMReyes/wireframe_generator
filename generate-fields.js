@@ -112,6 +112,9 @@ function generateFields(listOfLists) {
 				field.typeOptions = generateRadios(list[2]);
 			} else {
 				field.type = 'yesno';
+				if (configGen.yesnoAllowNull) {
+					field.typeOptions = { allowNull: true };
+				}
 			}
 		}
 
