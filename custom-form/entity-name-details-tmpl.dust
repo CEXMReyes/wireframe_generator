@@ -1,3 +1,14 @@
+{?model.datePurged}
+    <div class="alert alert-danger">
+        {@resource key="record_purged_info" /}
+    </div>
+{:else}
+    {?model.pendingPurgeDate}
+        <div class="alert alert-danger">
+            {@resource key="record_pending_purge_info" /}
+        </div>
+    {/model.pendingPurgeDate}
+{/model.datePurged}
 <!-- Buttons to edit and delete -->
 <div class="pull-right btn-toolbar-sticky no-print" data-print="false">
   <div class="btn-toolbar" data-readonly="true">
