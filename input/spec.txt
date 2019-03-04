@@ -36,6 +36,6 @@ Union Involved	Dropdown	Sub Case Type = Union	Case Type = Grievance || Sub Case 
 ##
 Grievance Type	Dropdown		Case Type = Grievance || Sub Case Type = Union	Contract, Overtime, Workplace Conditions, Discrimination, Conflict, Other
 Other Grievance Type 	Text Box	Grievance Type = Other	Grievance Type = Other
-Interim Action	Dropdown		Case Type = Assault, Discrimination, Payroll, Threat, Policy Violation	Relocation
+Interim Action	Dropdown		Case Type = Assault OR Discrimination OR Payroll OR Threat OR Policy Violation	Relocation
 Actions Taken	Dropdown			Remediate, Investigate, Referral to Resources, Inquiry Only, Referral to Other Department
 Case Details	Text Editor
